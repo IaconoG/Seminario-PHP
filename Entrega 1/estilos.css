@@ -1,0 +1,173 @@
+/** Variables **/
+:root {
+  /* Colores */
+  --main-gray-ligth:  #F5F5F5;
+
+  --cl-first-olive: #484A2A; 
+  --cl-second-olive: #82802C;
+  --cl-third-olive: #8F993F;
+  /* Fonts */
+  --ff-primary: 'Poppins', sans-serif;
+  --ff-secundary: 'Raleway', sans-serif;
+  /* Shadows */
+  --shadow-primary: 0 0 10px rgba(0, 0, 0, 0.2);
+  --shadow-secondary: 0 0 10px rgba(0, 0, 0, 0.3);
+  --shadow-tertiary: 0 0 10px rgba(0, 0, 0, 0.4);
+  /* Border */
+  --default-radious-border: 0.4rem;
+
+  /* Tama;os bloques */
+  --header-height-size: 10vh;
+  --footer-height-size: 5vh;
+}
+/** Establecemos una configuracion incial del css **/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+  font-family: var(--ff-primary);
+  line-height: 1.4;
+  scroll-behavior: smooth;
+  
+}
+body {
+  font-size: 1.6rem;
+  width: 100%;
+  /* min-height: 100vh; */
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+select, input[name="filtro-nombre"] {
+  border-radius: var(--default-radious-border);
+  border: none;
+  box-shadow: var(--shadow-primary);
+  padding: 0.5rem;
+  color: #000;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+/** Estilos */
+/* BODY */
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--header-height-size) 1fr var(--footer-height-size);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 100vh;
+}
+/* HEADER */
+header {
+  grid-area: 1 / 1 / 2 / 2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding-inline: 5rem;
+  box-shadow: var(--shadow-primary);
+}
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+}
+nav .nav-list {
+  display: flex;
+  width: 30vw;
+
+  /* gap: 0 5rem; */
+}
+nav li {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--cl-second-olive);
+}
+/* .nav-list a:hover {
+  color: #000;
+} */
+nav .nav-list li:nth-of-type(1) {
+  margin-left: auto;
+  margin-right: auto;
+}
+nav .nav-list li:nth-of-type(3) {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* MAIN */
+.main {
+  grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+.contenido {
+  display: flex;
+  max-width: 80vw;
+  min-height: 100%;
+}
+/* Menu de Filtros */
+.filtros {
+  position: sticky;
+  z-index: 1;
+  top: 10vh;
+  background-color: aliceblue;
+  width: 25vh;
+  height: calc(100vh - var(--header-height-size));
+  max-height: calc(100vh - var(--header-height-size) - var(--footer-height-size));
+}
+.filtros {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Juegos */
+.juegos {
+  width: auto;
+  background-color: bisque;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.juegos .ordenamiento_juego {
+  width: 100%;
+  /* with diplay flex, elemnts in the left */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 0 1rem;
+}
+.juegos select {
+  width: 7rem;
+  height: 2rem;
+  text-transform: capitalize;
+}
+/* FOOTER */
+footer {
+  background-color: #f2f2f2;
+  grid-area: 3 / 1 / 4 / 2;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+}

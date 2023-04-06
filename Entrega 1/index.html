@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="" alt="Icono de la pagina">
+        <h1>GameStore</h1>
+      </div>
+      <!-- Logo, ver con que etiqueta lo representamos? img / a -->
+      <!-- Titulo -->
+      <!-- Menu de la pagina -->
+      <nav class="navbar">
+        <ul class="nav-list">
+          <li><a href="#agregar">Agregar Juego</a></li>
+          <li><a href="#eliminar">Elimnar Juego</a></li>
+          <li><a href="#actualizar">Actualizar Juego</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- CONTENIDO DE LA PAGINA -->
+    <main class="main">
+      <div class="contenido">
+        <!-- Seccion que contiene los filtors del contenido -->
+        <aside class="filtros">
+          <h3>Filtros</h3>
+          <form id="form-filtro" class="from-filtros" action="procesar_filtros.php" method="get">
+            
+            <!-- Filtro por nombre -->
+            <label for="filtro-nombre">Por nombre</label>
+            <input id="filtro-nombre" name="filtro-nombre" list="nombres" />
+            <datalist id="nombres">
+              <option value="God Of War"></option>
+              <option value="Assassin's Creed"></option>
+              <option value="Destiny"></option>
+              <option value="Grand Theft Auto"></option>
+              <option value="Counter-Strike Global Offensive"></option>
+            </datalist>
+            <!-- Filtro por genero -->
+
+            <p id="por-genero">Por genero</p>
+            <ul name="filtro-genero[]" id="filtro-genero">
+              <input type="checkbox" name="predeterminado" value="default" />Predeterminado
+              <input type="checkbox" name="accion" value="accion" />Accion
+              <input type="checkbox" name="aventura" value="aventura" />Aventura
+              <input type="checkbox" name="fps" value="fps" />FPS
+              <input type="checkbox" name="terror" value="terror" />Terror
+              <input type="checkbox" name="mmo" value="mmo" />MMO
+            </ul>
+            <!-- Filtro por plataforma -->
+            <label for="filtro-plataforma">Por plataforma</label>
+            <select name="filtro-plataforma" id="filtro-plataforma">
+              <option value="default" selected>Predeterminado</option>
+              <option value="PC">Computadora</option>
+              <option value="PS5">PlayStation 5</option>
+              <option value="PS4">PlayStation 4</option>
+              <option value="Xbox">Xbox ONE</option>
+              <option value="Switch">Nintendo Switch</option>
+              <option value="Mobile">Mobile</option>
+            </select>
+            <button>Filtrar</button>
+          </form>
+          <!-- Ordenamiento por A-Z -->
+        </aside>
+        <!-- Seccion que muestra el contenido -->
+        <section class="juegos">
+          <div class="ordenamiento_juego">
+            <label for="ordenamiento-A_Z">ordenamiento</label>
+            <select name="ordenamiento-A_Z" id="ordenamiento-A_Z">
+              <option value="default" selected>...</option>
+              <option value="A-Z">A-Z</option>
+              <option value="Z-A">Z-A</option>
+            </select>
+          </div>
+          <div class="bloque-juego" id="juego-god_of_war">
+            <img src="" alt="Portada del juego God Of War" />
+            <p class="titulo-juego">God Of War</p>
+            <p class="desc-juego">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
+              nisi cum corrupti omnis modi corporis ab reiciendis provident ad nemo,
+              a ratione consequatur quibusdam magnam! Blanditiis, rerum quisquam.
+              Rem, dicta.
+            </p>
+            <p class="plataforma">Plataformas soportadas:</p>
+            <p class="utr-juego">Url de la pagina del juego</p>
+            <p class="generos-juego">Accion...</p>
+          </div>
+          <div class="bloque-juego" id="juego-assasins_creed">
+            <img src="" alt="Portada del juego Assassin's Creed" />
+            <p class="titulo-juego">God Of War</p>
+            <p class="desc-juego">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
+              nisi cum corrupti omnis modi corporis ab reiciendis provident ad nemo,
+              a ratione consequatur quibusdam magnam! Blanditiis, rerum quisquam.
+              Rem, dicta.
+            </p>
+            <p class="plataforma">Plataformas soportadas:</p>
+            <p class="utr-juego">Url de la pagina del juego</p>
+            <p class="generos-juego">Accion...</p>
+          </div>
+          <div class="bloque-juego" id="juego-destiny">
+            <img src="" alt="Portada del juego Destiny" />
+            <p class="titulo-juego">God Of War</p>
+            <p class="desc-juego">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
+              nisi cum corrupti omnis modi corporis ab reiciendis provident ad nemo,
+              a ratione consequatur quibusdam magnam! Blanditiis, rerum quisquam.
+              Rem, dicta.
+            </p>
+            <p class="plataforma">Plataformas soportadas:</p>
+            <p class="utr-juego">Url de la pagina del juego</p>
+            <p class="generos-juego">Accion...</p>
+          </div>
+          <div class="bloque-juego" id="juego-grand_theft_auto">
+            <img src="" alt="Portada del juego Grand Theft Auto" />
+            <p class="titulo-juego">God Of War</p>
+            <p class="desc-juego">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
+              nisi cum corrupti omnis modi corporis ab reiciendis provident ad nemo,
+              a ratione consequatur quibusdam magnam! Blanditiis, rerum quisquam.
+              Rem, dicta.
+            </p>
+            <p class="plataforma">Plataformas soportadas:</p>
+            <p class="utr-juego">Url de la pagina del juego</p>
+            <p class="generos-juego">Accion...</p>
+          </div>
+          <div class="bloque-juego" id="juego-counter_strike_global_offensive">
+            <img src="" alt="Portada del juego Counter-Strike Global Offensive" />
+            <p class="titulo-juego">God Of War</p>
+            <p class="desc-juego">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
+              nisi cum corrupti omnis modi corporis ab reiciendis provident ad nemo,
+              a ratione consequatur quibusdam magnam! Blanditiis, rerum quisquam.
+              Rem, dicta.
+            </p>
+            <p class="plataforma">Plataformas soportadas:</p>
+            <p class="utr-juego">Url de la pagina del juego</p>
+            <p class="generos-juego">Accion...</p>
+          </div>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio tempora sequi nisi odio aut. Error optio voluptatem dignissimos molestiae, excepturi illum mollitia libero eius, laboriosam, sunt deleniti quis minus fugit!</p>
+        </section>
+      </div>
+      
+    </main>
+    <!-- FOOTER -->
+    <footer>
+      <div>
+        <p>Iacono Gianfranco & ~ 2023</p>
+        <!-- fehc actual? la podemos pedir con php o js? -->
+      </div>
+    </footer>
+  </body>
+</html>
