@@ -76,15 +76,12 @@ button:hover {
   transform: scale(1.02);
 }
 
-
-
 h3 {
   font-size: 3rem;
 }
 p, img, label {
   font-size: 1.6rem;
 }
-
 
 
 
@@ -116,6 +113,7 @@ header {
   display: flex;
   align-items: center;
   gap: 2rem;
+  width: 60%;
 }
 .header .logo {
   max-width: 8rem;
@@ -135,7 +133,7 @@ header {
 }
 nav {
   display: flex;
-  width: 50%;
+  width: 40%;
 }
 nav .nav-list {
   display: flex;
@@ -153,8 +151,11 @@ nav .nav-list {
   color: #000;
 } */
 .nav-list li:nth-of-type(1) {
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
+}
+.nav-list li:nth-of-type(2) {
+  /* margin-left: auto; */
 }
 .nav-list li:nth-of-type(3) {
   margin-left: auto;
@@ -165,7 +166,7 @@ nav .nav-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1em;
+  padding: 2.5em 0;
 }
 .contenido {
   display: flex;
@@ -238,7 +239,6 @@ nav .nav-list {
   gap: 4rem;
 }
 .juego {
-
   border-radius: 1rem;
   box-shadow: var(--shadow-secondary);
   overflow: hidden;
@@ -314,7 +314,6 @@ nav .nav-list {
 footer {
   grid-area: 3 / 1 / 4 / 2;
   background-color: #f2f2f2;
-  margin-top: 1rem;
   height: 100%;
 }
 footer .footer-contenido {
