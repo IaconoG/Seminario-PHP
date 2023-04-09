@@ -8,7 +8,7 @@
   --ff-primary: 'Poppins', sans-serif;
   --ff-secundary: 'Raleway', sans-serif;
   /* Shadows */
-  --shadow-primary: 0 2 5px 0 rgba(0, 0, 0, 0.2);
+  --shadow-primary: 0 0 5px rgba(0, 0, 0, 0.2);
   --shadow-secondary: 0 0 10px rgba(0, 0, 0, 0.3);
   --shadow-tertiary: 0 0 10px rgba(0, 0, 0, 0.4);
   /* Border */
@@ -59,10 +59,10 @@ input[type="checkbox"] {
   margin-right: 0.5rem;
 }
 button {
-  width: 80%;
+  width: 100%;
   height: 3rem;
   border: 1px solid transparent;
-  box-shadow: var(--dark-shadow);
+  box-shadow: var(--shadow-primary);
   border-radius: 2rem;
   cursor: pointer;
   background-color: burlywood;
@@ -70,7 +70,14 @@ button {
   font-weight: 700;
   text-transform: capitalize;
   color: #000;  
+  transition: transform 0.2s ease-out;
 }
+button:hover {
+  transform: scale(1.02);
+}
+
+
+
 h3 {
   font-size: 3rem;
 }
@@ -105,22 +112,37 @@ header {
   padding-inline: 5rem;
   box-shadow: var(--shadow-primary);
 }
-header .logo {
+.header {
   display: flex;
   align-items: center;
-  gap: 0 1rem;
-
+  gap: 2rem;
+}
+.header .logo {
+  max-width: 8rem;
+  max-height: 8rem;
+}
+.header img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.header .nombre-pagina {
   font-size: 2rem;
   font-weight: 700;
-  color: #000;
+  text-transform: capitalize;
+  color: var(--cl-second-olive);
+}
+nav {
+  display: flex;
+  width: 50%;
 }
 nav .nav-list {
   display: flex;
-  width: 30vw;
-
+  width: 100%;
   /* gap: 0 5rem; */
 }
-nav li {
+.nav-list li {
   text-align: center;
   font-size: 1.7rem;
   font-weight: 700;
@@ -130,13 +152,12 @@ nav li {
 /* .nav-list a:hover {
   color: #000;
 } */
-nav .nav-list li:nth-of-type(1) {
+.nav-list li:nth-of-type(1) {
   margin-left: auto;
   margin-right: auto;
 }
-nav .nav-list li:nth-of-type(3) {
+.nav-list li:nth-of-type(3) {
   margin-left: auto;
-  margin-right: auto;
 }
 /* MAIN */
 .main {
@@ -190,7 +211,6 @@ nav .nav-list li:nth-of-type(3) {
     height: 1em;   
 }
 
-
 /* Juegos */
 .juegos {
   width: calc(100% - 20vh);
@@ -218,14 +238,11 @@ nav .nav-list li:nth-of-type(3) {
   gap: 4rem;
 }
 .juego {
-  /* min-width: 400px;
-  width: auto; 
-  max-width: 30%; */
-  background-color: #fff;
+
   border-radius: 1rem;
-  box-shadow: var(--shadow-primary);
+  box-shadow: var(--shadow-secondary);
   overflow: hidden;
-  --padding: 1rem;
+  --padding: 1.5rem 2rem;
 }
 .juego .header-juego {
   overflow: hidden;
@@ -242,7 +259,51 @@ nav .nav-list li:nth-of-type(3) {
   transition: 0.3s transform ease-in-out;
 }
 .juego .contenido-juego {
+  background-color: #f2f2f2;
   padding: var(--padding);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.juego .contenido-juego .contenedor-titulo-juego {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+.juego .contenido-juego .titulo-juego {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 100%;  
+}
+.subrallado {
+  width: 100%;
+  border: 2px solid #FFA07A;
+  border-radius: 999px;
+  display: inline-block; /* Esto hace que el div ocupe solo el espacio necesario */
+}
+
+.juego .contenido-juego .descripcion-juego {
+  border-block: 2px solid #787878;
+  text-align: justify;
+}
+.juego .contenido-juego ul {
+  padding-inline: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 4rem;
+}
+.juego .contenido-juego li {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  list-style-type: circle;
+}
+
+.juego .contenido-juego .contenido-subtitulo {
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
 
@@ -251,10 +312,16 @@ nav .nav-list li:nth-of-type(3) {
 
 /* FOOTER */
 footer {
-  background-color: #f2f2f2;
   grid-area: 3 / 1 / 4 / 2;
+  background-color: #f2f2f2;
+  margin-top: 1rem;
+  height: 100%;
+}
+footer .footer-contenido {
   display: flex;
   justify-content: flex-end;
-  padding: 2rem;
-  margin-top: 1rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-inline: 5rem;
 }
