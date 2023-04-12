@@ -12,7 +12,7 @@
   --shadow-secondary: 0 0 10px rgba(0, 0, 0, 0.3);
   --shadow-tertiary: 0 0 10px rgba(0, 0, 0, 0.4);
   /* Border */
-  --default-radious-border: 0.4rem;
+  --default-radious-border: 0.5rem;
 
   /* Tama;os bloques */
   --header-height-size: 10vh;
@@ -43,16 +43,16 @@ a {
 ul {
   list-style: none;
 }
-select, input[name="filtro-nombre"] {
+select, input {
   border-radius: var(--default-radious-border);
-  border: none;
+  border: 1px solid #ccc;
   box-shadow: var(--shadow-primary);
   padding: 0.5rem;
   color: #000;
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.6rem;
   width: 100%;
 }
+
 input[type="checkbox"] {
   width: 1.5rem;
   height: 1.5rem;
@@ -105,7 +105,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: #F8F8FF;
   padding-inline: 5rem;
   box-shadow: var(--shadow-primary);
 }
@@ -113,7 +113,7 @@ header {
   display: flex;
   align-items: center;
   gap: 2rem;
-  width: 60%;
+  width: 50%;
 }
 .header .logo {
   max-width: 8rem;
@@ -133,7 +133,7 @@ header {
 }
 nav {
   display: flex;
-  width: 40%;
+  width: 50%;
 }
 nav .nav-list {
   display: flex;
@@ -142,9 +142,9 @@ nav .nav-list {
 }
 .nav-list li {
   text-align: center;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: var(--cl-second-olive);
 }
 /* .nav-list a:hover {
@@ -259,7 +259,7 @@ nav .nav-list {
   transition: 0.3s transform ease-in-out;
 }
 .juego .contenido-juego {
-  background-color: #f2f2f2;
+  background-color: #F8F8FF;
   padding: var(--padding);
   display: flex;
   flex-direction: column;
@@ -313,7 +313,7 @@ nav .nav-list {
 /* FOOTER */
 footer {
   grid-area: 3 / 1 / 4 / 2;
-  background-color: #f2f2f2;
+  background-color: #F8F8FF;
   height: 100%;
 }
 footer .footer-contenido {
