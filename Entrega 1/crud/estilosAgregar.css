@@ -1,0 +1,111 @@
+/** === Variables === **/
+:root {
+  /* Colores */
+  --main-gray-ligth:  #F5F5F5;
+  
+
+  /* Fonts */
+  --ff-primary: 'Poppins', sans-serif;
+  --ff-secundary: 'Raleway', sans-serif;
+  /* Shadows */
+  --shadow-primary: 0 0 5px rgba(0, 0, 0, 0.2);
+  --shadow-secondary: 0 0 10px rgba(0, 0, 0, 0.3);
+  --shadow-tertiary: 0 0 10px rgba(0, 0, 0, 0.4);
+  /* Border */
+  --default-radious-border: 0.4rem;
+
+  /* Tama;os bloques */
+  --header-height-size: 10vh;
+  --footer-height-size: 5vh;
+}
+main {
+  background-color: #FFFAFA;
+}
+.nav-list li:nth-child(1) {
+  margin-right: 0;
+}
+.contenido {
+  min-width: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-agregar {
+  width: 80%;
+  min-width: 400px;
+  max-width: 800px;
+  background-color: white;
+  box-shadow: var(--shadow-secondary);
+  border-radius: var(--default-radious-border);
+  height: fit-content;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.form-agregar > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+label:not([for="imagen"]), p   {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+input[type="text"],
+input[type="file"],
+textarea,
+select,
+label[for="imagen"] {
+  box-shadow: var(--shadow-primary);
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--default-radious-border);
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: burlywood;
+}
+textarea {
+  font-family: var(--ff-primary);
+  min-height: 55px;
+  height: 100px;
+  max-height: 200px;
+  min-width: 100%;
+}
+input[type="file"] {
+  display: none;
+}
+label[for="imagen"] {
+  color: #8c8c8c; /* es el color de placholde por defecto de edge */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+label[for="imagen"]:hover {
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
+}
+
+
+
+.form-agregar > button {
+  max-width: 200px;
+  
+  align-self: center;
+  color: white;
+}
+
+select option {
+  border-bottom: 1px solid #D3D3D3;
+  padding: 5px;
+  text-align: center;
+}
+select option:last-child {
+  border-bottom: none;
+}
+
