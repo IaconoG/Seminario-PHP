@@ -11,3 +11,10 @@
   - https://www.w3schools.com/howto/howto_css_cards.asp
   - https://www.w3schools.com/howto/howto_css_image_card.asp
   - https://www.youtube.com/watch?v=h2x4YTI6WeE&ab_channel=WebDevSimplified
+
+
+
+
+  ## JS
+  - Elementos del formulario
+    - https://developer.mozilla.org/es/docs/web/api/formdata
