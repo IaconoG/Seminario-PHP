@@ -29,7 +29,7 @@
     <!-- CONTENIDO DE LA PAGINA -->
     <main class="main">
       <div class="contenido">
-        <form id="formulario-agregar" action="" method="post" class="form-agregar">
+        <form id="formulario-agregar" action="" class="form-agregar"> <!-- method="post"  -->
           <div>
             <label for="nombre">Nombre del juego:</label>
             <input type="text" id="nombre" name="nombre" required placeholder="Age of empire III" />
@@ -68,7 +68,7 @@
               <option value="mmo">MMO</option>
             </select>
           </div>
-          <button type="submit" onclick="enviarFormulario()" >Enviar</button>
+          <button onclick="validarFormulario()" >Enviar</button> <!-- type="submit"-->
         </form>
       </div>
     </main>
