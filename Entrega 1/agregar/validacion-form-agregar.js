@@ -10,7 +10,7 @@ const formulario = document.getElementById("formulario-agregar");
 
 /* Función para validar el formulario */
 
-function enviarFormulario() {
+function validarFormulario() {
   function estiloCondicion(condicion, elemento) {
     if (condicion) {
       elemento.style.border = "1px solid green";
