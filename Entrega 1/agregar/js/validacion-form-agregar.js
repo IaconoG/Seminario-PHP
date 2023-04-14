@@ -1,4 +1,3 @@
-
 /* Obtenemos la referencia al formulario */
 const formulario = document.getElementById("formulario-agregar");
 
@@ -6,7 +5,6 @@ const formulario = document.getElementById("formulario-agregar");
 // formulario.addEventListener('submit', function(e) {
 //   e.preventDefault(); // Evitamos que se envíe el formulario si no pasa la validación
 // });
-
 
 /* Función para validar el formulario */
 
@@ -42,10 +40,11 @@ function validarFormulario() {
   // Validamos seleccion de opciones plataforma
   const plataforma = formulario.elements.plataforma;
   const opcionesPlataforma = Array.from(plataforma.options);
-  const opcionesPlataformaSeleccionadas = opcionesPlataforma.filter(
+  const algunaOpcionPlataformaSeleccionada = opcionesPlataforma.some(
     (opcion) => opcion.selected
   );
-  estiloCondicion(opcionesPlataformaSeleccionadas.length !== 0, plataforma);
+  estiloCondicion(algunaOpcionPlataformaSeleccionada, plataforma);
+  console.log(algunaOpcionPlataformaSeleccionada);
 
   // Validamos que el campo url no supere los 80 caracteres
   const url = formulario.elements.url;
@@ -54,10 +53,9 @@ function validarFormulario() {
   // Validamos seleccion de opciones genero
   const genero = formulario.elements.genero;
   const opcionesGenero = Array.from(genero.options);
-  const opcionesGeneroSeleccionadas = opcionesGenero.filter(
+  const algunaOpcionGeneroSeleccionada = opcionesGenero.some(
     (opcion) => opcion.selected
   );
-  estiloCondicion(opcionesGeneroSeleccionadas.length !== 0, genero);
+  console.log(algunaOpcionGeneroSeleccionada);
+  estiloCondicion(algunaOpcionGeneroSeleccionada, genero);
 }
-
-
