@@ -19,7 +19,7 @@
   <!-- CONTENIDO DE LA PAGINA -->
   <main class="main">
     <div class="contenido">
-      <form id="formulario-agregar" action="components/postFormularioJuego.php" method="post" class="form-agregar">
+      <form id="formulario-agregar" class="form-agregar" action="components/postFormularioJuego.php" method="post">
         <div>
           <label for="nombre">Nombre del juego:</label>
           <input type="text" id="nombre" name="nombre" placeholder="Age of empire III" />
@@ -35,7 +35,7 @@
         </div>
         <div>
           <label for="plataforma">Plataforma:</label>
-          <select name="plataformas[]" id="plataformas" multiple> <!-- [] -> para que PHP pueda reconocerlo como un arreglo -->
+          <select name="plataformas[]" id="plataformas" title="listado-plataformas" multiple> <!-- [] -> para que PHP pueda reconocerlo como un arreglo -->
             <?php require('components/get/getOpcionesPlataformas.php') ?>
           </select>
         </div>
@@ -45,19 +45,22 @@
         </div>
         <div>
           <label for="genero">Genero:</label>
-          <select name="generos[]" multiple>
+          <select name="generos[]" id="generos" title="listado-generos" multiple>
             <?php require('components/get/getOpcionesGeneros.php') ?>
           </select>
         </div>
-        <input type="submit" value="Enviar"></input>
+        <input type="submit" value="Enviar" onclick="validarFormulario()"></input>
       </form>
     </div>
   </main>
   <!-- FOOTER -->
   <?php require('components/footer/footer.php') ?>
 </body>
-<script src="assets/js/seleccionMultiple.js"></script>
+<!-- SCRIPTS -->
+<!-- <script src="assets/js/seleccionMultiple.js"></script> -->
 <script src="assets/js/uploadImagen.js"></script>
+<script src="assets/js/validacion-form-agregar.js"></script>
+
 
 
 </html>
