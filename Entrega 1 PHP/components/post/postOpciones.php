@@ -30,48 +30,43 @@ $valoresGeneros = array (
 );
 
 // === Funcion para insertar ===
-function insertarGenero($conexion, $tabla, $valores) {
+function insertarDatos($conexion, $tabla, $valores) {
   $sql = "INSERT INTO $tabla (nombre) VALUES ('$valores')";  // Creamos la consulta
   /* La consulta está insertando un valor en la columna "nombre" de la tabla "generos", donde el valor a insertar se almacena en la variable $genero. */
   mysqli_query($conexion, $sql); // Ejecutamos la consulta
 }
 
 // === Conectamos a la base de datos === 
-include 'conexion.php';
+include 'config/conexionBD.php';
 
 // === Verificar si la tabla Plataformas esta vacia ===
 $sql = mysqli_query($conexion, "SELECT COUNT(*) FROM plataformas"); // Creamos la consulta
   /* Selecciona el número de filas en la tabla "generos".  */
 $filas = mysqli_fetch_array($sql); // Obtenemos el numero de filas de la tabla
-// ** CREO QUE TENGO QUE VERIFICAR SI EL SQL SALIO BN **//
-// ** POR SI LA TABLA NO EXISTE **//
-// ** DESPUES VEO ESTO **//
+
+if (!$filas) {
+  echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
+  die();
+}
 
 if ($filas[0] == 0) { // Si la tabla esta vacia
   // Insertarmos  las opciones en la base de datos
   foreach ($valoresPlataformas as $plataforma) {
-    insertarGenero($conexion, "plataformas", $plataforma);
+    insertarDatos($conexion, "plataformas", $plataforma);
   }
-  echo '<script>console.log("Condicion de plataformas -> Estaba vacio inserte todo")</script>';
 } else {  // Si la tabla contiene datos
   // Insertarmos solos los elemetnos que no esten repetidos
-  $existe = false;
   foreach ($valoresPlataformas as $plataforma) {
     $sql = "SELECT * FROM  plataformas WHERE nombre = '$plataforma'"; // Consultamos si el dato ya existe
     $resultado = mysqli_query($conexion, $sql);
     if ($resultado) {
       if (mysqli_num_rows($resultado) == 0) {
-        $existe = true;
-        insertarGenero($conexion, "plataformas", $plataforma);
+        insertarDatos($conexion, "plataformas", $plataforma);
       }
     } else {
-      die('Error al ejecutar la consulta: ' . mysqli_error($conexion));
+      echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
+      die();
     }
-  }
-  if ($existe) {
-    echo '<script>console.log("Condicion de plataformas -> Algunos datos no estaban insertados");</script>';
-  } else {
-    echo '<script>console.log("Condicion de plataformas -> Todos los datos estaban insertados");</script>';
   }
 }
 
@@ -79,9 +74,15 @@ if ($filas[0] == 0) { // Si la tabla esta vacia
 // === Verificar si la tabla Genero esta vacia ===
 $sql = mysqli_query($conexion, "SELECT COUNT(*) FROM generos"); 
 $filas = mysqli_fetch_array($sql);
+
+if (!$filas) {
+  echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
+  die();
+}
+
 if ($filas[0] == 0) {
   foreach ($valoresGeneros as $genero) {
-    insertarGenero($conexion, "generos", $genero);
+    insertarDatos($conexion, "generos", $genero);
   }
 } else { 
   foreach ($valoresGeneros as $genero) {
@@ -89,16 +90,15 @@ if ($filas[0] == 0) {
     $resultado = mysqli_query($conexion, $sql);
     if ($resultado) {
       if (mysqli_num_rows($resultado) == 0) {
-        insertarGenero($conexion, "generos", $genero);
+        insertarDatos($conexion, "generos", $genero);
       }
     } else {
-      die('Error al ejecutar la consulta: ' . mysqli_error($conexion));
+      echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
+      die();
     }
   }
 }
 
-
-
 // === Cerramos la conexion ===
-mysqli_close($conexion);
-?>
+mysqli_free_result($resultado); // Libera la memoria asociada al resultado
+mysqli_close($conexion); // Cierra la conexion a la base de datos
