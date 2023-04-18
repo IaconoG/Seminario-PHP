@@ -27,6 +27,7 @@
             <label for="filtro-nombre" class="titulo-filtro">Por nombre</label>
             <input id="filtro-nombre" name="filtro-nombre" list="nombres" />
             <datalist id="nombres">
+              <!-- <?php require('components/get/getOpcionesNombresJuegos.php')?> -->
               <option value="God Of War"></option>
               <option value="Assassin's Creed"></option>
               <option value="Destiny"></option>
@@ -36,15 +37,15 @@
           </div>
           <!-- Filtro por genero -->
           <div class="bloque-filtro-genero">
-            <label for="filtro-generos" class="titulo-filtro">Por plataforma</label>
-            <select name="filtro-generos" id="filtro-generos" multiple>
+            <label for="filtro-generos" class="titulo-filtro">Por Genero</label>
+            <select name="filtro-generos" id="filtro-generos" title="listado-plataformas" multiple>
               <?php require('components/get/getOpcionesGeneros.php') ?>
             </select>
           </div>
           <!-- Filtro por plataforma -->
           <div class="bloque-filtro-plataforma">
             <label for="filtro-plataformas" class="titulo-filtro">Por plataforma</label>
-            <select name="filtro-plataformas" id="filtro-plataformas" multiple>
+            <select name="filtro-plataformas" id="filtro-plataformas" title="listado-plataformas" multiple>
               <?php require('components/get/getOpcionesPlataformas.php') ?>
             </select>
           </div>
@@ -63,6 +64,7 @@
           </select>
         </div>
         <div class="bloque-juegos">
+          <require src="components/listaJuegos.php"></require>
           <div class="juego" id="juego-god_of_war">
             <div class="header-juego">
               <img src="https://gamingdebates.com/wp-content/uploads/2020/12/capsule_616x353-2-1000x600.jpg?v=1607185166" alt="Portada del juego God Of War" />
@@ -189,7 +191,7 @@
 </body>
 
 <!-- SCRIPTS -->
-<script src="assets/js/seleccionMultiple.js"></script>
+<!-- <script src="assets/js/seleccionMultiple.js"></script> -->
 
 <!-- PHP -->
 <!-- Agregamos opciones a la BD para tener como default porque no quiero agregarlo a mano
