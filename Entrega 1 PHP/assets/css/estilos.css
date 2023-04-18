@@ -121,13 +121,13 @@ body {
   max-width: 80vw;
   min-height: 100%;
 }
-/* Menu de Filtros */
+/* Menu de Filtros (aside) */
 .filtros {
   /* Estaria bueno que la seccion de filtros acompa;e para q el usuario no tenga q subir para seleccionar los filtros */
   /* O poner un boton (flecha en alguna esquina inferior) para que suba al inicio de la pagina no se*/
   background-color: aliceblue;
   width: 20vh;
-  min-width: 165px;
+  min-width: 200px;
   height: 100%;
 
   display: flex;
@@ -147,12 +147,22 @@ body {
 .filtros form > div {
   margin: 0 0 4rem 0;
 }
+.filtros select {
+  min-height: 150px;
+}
+select option{
+  border-bottom: 1px solid #D3D3D3;
+  padding-inline: 0.5rem;
+  padding-block: 5px;
+}
+select option:last-child {
+  border-bottom: none;
+}
 
 
 /* Juegos */
 .juegos {
-  width: calc(100% - 20vh);
-  min-width: 500px;
+  width: 100%;
   background-color: bisque;
   padding: 2rem 5rem;
   display: flex;
