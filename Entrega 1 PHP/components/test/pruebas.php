@@ -8,6 +8,11 @@ include 'conexion.php';
 $sql = "SELECT * FROM  plataformas";
 $resultado = mysqli_query($conexion, $sql);
 
+if (!$resultado) {
+  echo '<script>console.log("Error al ejecutar la consulta")</script>';
+  die();
+}
+
 //** OBTENEMOS LOS ATRIBUTOS Y DATOS DE LA TABLA **//
 
 while ($fila = mysqli_fetch_assoc($resultado)) { // obtiene una fila de resultados como una matriz asociativa
@@ -42,6 +47,5 @@ foreach ($buscar as $elem) {
 
 
 
-
+mysqli_free_result($resultado);
 mysqli_close($conexion);
-?>
