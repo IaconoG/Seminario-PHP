@@ -1,9 +1,9 @@
 <?php
 //** Conectamos a la base de datos **//
-  include 'config/conexionBD.php';
+  require ($pathConexion."conexionBD.php");
 
   // //** Obtenemos los datos de la base de datos **//
-  $sql = "SELECT nombre FROM  generos"; // Consulta SQL
+  $sql = "SELECT * FROM  generos"; // Consulta SQL
   $resultado = mysqli_query($conexion, $sql); // Ejecuta una consulta en la base de datos
 
   if (!$resultado) { // Si la consulta no se ejecuta correctamente
@@ -11,13 +11,12 @@
     die();
   }
 
-  //** Mostramos los datos en la pagina **//
-  $key = 'nombre';
-  while ($genero = mysqli_fetch_assoc($resultado)) { // obtiene una fila de resultados como una matriz asociativa
-    $nombreGenero = $genero[$key];
-    $option = "<option value='$nombreGenero' name='$nombreGenero'>$nombreGenero</option>";
-    echo $option;
+  //** Almacenamos los datos en un array **//
+  $_SESSION['generos'] = array();
+  while ($genero = mysqli_fetch_assoc($resultado)) {
+    $_SESSION['generos'][$genero['id']] = $genero['nombre'];
   }
+
 
   /** Cerramos la conexion **/
   mysqli_free_result($resultado); // Libera la memoria asociada al resultado

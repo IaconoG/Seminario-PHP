@@ -1,9 +1,9 @@
 <?php 
   //** Conectamos a la base de datos **/
-  include ('config/conexionBD.php');
+  require ('config/conexionBD.php');
 
   //** Obtenemos los nombres de la tabla juegos */
-  $sql = "SELECT nombre FROM juegos"; // Consulta SQL
+  $sql = "SELECT nombre FROM juegos ORDER BY nombre ASC"; // Consulta SQL con orden ascendente (A a Z)
   $resultado = mysqli_query($conexion, $sql); // Ejecuta una consulta en la base de datos
 
   if (!$resultado) { // Si la consulta no se ejecuta correctamente
@@ -15,7 +15,7 @@
   $row = 'nombre';
   while ($juego = mysqli_fetch_assoc($resultado)) {
     $nombreJuego = $juego[$row];
-    $option = "<option value=$nombreJuego name=$nombreJuego>$nombreJuego</option>";    
+    $option = "<option value=\"$nombreJuego\" name=\"$nombreJuego\"></option>";    
     echo $option;
   }
   
