@@ -1,3 +1,6 @@
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,10 +22,11 @@
   <!-- CONTENIDO DE LA PAGINA -->
   <main class="main">
     <div class="contenido">
-      <form id="formulario-agregar" class="form-agregar" action="components/postFormularioJuego.php" method="post">
+      <form id="formulario-agregar" class="form-agregar" enctype="multipart/form-data" action="components/postFormularioJuego.php" method="post" >
+        <!-- enctype="multipart/form-data -> para que PHP pueda reconocer el archivo cuando usamos imput type="file" -->
         <div>
           <label for="nombre">Nombre del juego:</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Age of empire III" />
+          <input type="text" id="nombre" name="nombre" placeholder="Age of empire III"/>
         </div>
         <div>
           <p>Imagen del juego:</p>
@@ -35,21 +39,22 @@
         </div>
         <div>
           <label for="plataforma">Plataforma:</label>
-          <select name="plataformas[]" id="plataformas" title="listado-plataformas" multiple> <!-- [] -> para que PHP pueda reconocerlo como un arreglo -->
-            <?php require('components/get/getOpcionesPlataformas.php') ?>
+          <select name="plataformas" id="plataformas" title="listado-plataformas" multiple> 
+            <?php require('components/mostrarDatos/opciones_plataforma.php') ?>
           </select>
         </div>
         <div>
           <label for="url">URL:</label>
-          <input type="text" id="url" name="url" maxlength="70" placeholder="https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/" />
+          <input type="text" id="url" name="url" maxlength="70"placeholder="https://www.ageofempires.com/games/aoeiiide"/>
+          
         </div>
         <div>
           <label for="genero">Genero:</label>
-          <select name="generos[]" id="generos" title="listado-generos" multiple>
-            <?php require('components/get/getOpcionesGeneros.php') ?>
+          <select name="generos" id="generos" title="listado-generos" multiple>
+            <?php require('components/mostrarDatos/opciones_genero.php') ?>
           </select>
         </div>
-        <input type="submit" value="Enviar" onclick="validarFormulario()"></input>
+        <input type="submit" value="Enviar" onclick="validarFormulario()" ></input>
       </form>
     </div>
   </main>
@@ -61,6 +66,11 @@
 <script src="assets/js/uploadImagen.js"></script>
 <script src="assets/js/validacion-form-agregar.js"></script>
 
-
-
+<!-- PHP -->
+<?php 
+  if (!empty($_SESSION['msg'])) {
+    echo "<script>alert('".$_SESSION['msg']."')</script>";
+    unset($_SESSION['msg']);
+  } 
+?>
 </html>

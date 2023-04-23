@@ -1,9 +1,9 @@
 <header>
     <div class="header">
-      <a href="#" class="logo">
+      <a href="index.php" class="logo">
         <img src="assets/img/joystick-color.png" alt="Icono de la pagina" />
       </a>
-      <a href="#" class="nombre-pagina">
+      <a href="index.php" class="nombre-pagina">
         <h1>GameStore</h1>
       </a>
     </div>

@@ -1,9 +1,9 @@
 /* FOOTER */
 footer {
   grid-area: 3 / 1 / 4 / 2;
-  background-color: #F8F8FF;
+  background-color: var(--clr-blanco);
   height: 100%;
-  min-width: 400px;
+  width: 100%;
 }
 footer .footer-contenido {
   display: flex;

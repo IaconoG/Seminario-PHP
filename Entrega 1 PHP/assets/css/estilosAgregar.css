@@ -1,27 +1,5 @@
-/** === Variables === **/
-:root {
-  /* Colores */
-  --main-gray-ligth:  #F5F5F5;
-  
 
-  /* Fonts */
-  --ff-primary: 'Poppins', sans-serif;
-  --ff-secundary: 'Raleway', sans-serif;
-  /* Shadows */
-  --shadow-primary: 0 0 5px rgba(0, 0, 0, 0.2);
-  --shadow-secondary: 0 0 10px rgba(0, 0, 0, 0.3);
-  --shadow-tertiary: 0 0 10px rgba(0, 0, 0, 0.4);
-  /* Border */
-  --default-radious-border: 0.4rem;
 
-  /* Tama;os bloques */
-  --header-height-size: 10vh;
-  --footer-height-size: 5vh;
-}
-
-main {
-  background-color: #FFFAFA;
-}
 .nav-list li:nth-child(1) {
   margin-right: 0;
 }
@@ -36,8 +14,8 @@ main {
   width: 80%;
   min-width: 400px;
   max-width: 800px;
-  background-color: white;
-  box-shadow: var(--shadow-secondary);
+  background-color: var(--clr-tercero);
+  box-shadow: var(--shadow-default);
   border-radius: var(--default-radious-border);
   height: fit-content;
   padding: 5rem 2rem;
@@ -49,7 +27,7 @@ main {
   flex-direction: column;
   margin-bottom: 2rem;
 }
-label:not([for="imagen"]), p   {
+label:not([for="imagen"]), p  {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
@@ -59,24 +37,26 @@ textarea,
 select,
 label[for="imagen"] {
   padding: 1rem;
-  border: 1px solid transparent;
-  font-size: 1.6rem;
 }
-input:focus,
-textarea:focus,
-select:focus {
+input:focus + label,
+label[for="imagen"]:focus {
   outline: none;
-  border-color: burlywood;
-}
+  border-color: var(--clr-primero);
+} 
+
 textarea {
-  font-family: var(--ff-primary);
+  font-family: var(--ff-primero);
   min-height: 55px;
   height: 100px;
   max-height: 200px;
   min-width: 100%;
 }
 input[type="file"] {
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 label[for="imagen"] {
   color: #8c8c8c; /* es el color de placholde por defecto de edge */
@@ -85,12 +65,12 @@ label[for="imagen"] {
 }
 label[for="imagen"]:hover {
   background-color: #e0e0e0;
-  border-color: #e0e0e0;
+  border-color: var(--clr-primero);
 }
 .form-agregar > input[type="submit"] {
   max-width: 200px;
   align-self: center;
-  color: white;
+  color: var(--clr-blanco);
 }
 
 select option {

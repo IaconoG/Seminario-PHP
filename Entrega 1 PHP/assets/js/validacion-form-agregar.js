@@ -25,8 +25,11 @@ function validarFormulario() {
   const imagen = elementoImagen.files[0]; // obtenemos el primer archivo
   let condicion = false;
   if (imagen !== undefined) {
-    const imagenType = /^image\//; // expresion regular para validar que sea una imagen
-    condicion = imagenType.test(imagen.type);
+    const imagenType = /^image\//; // expresion regular para validar que sea una imagen 
+      // ^ -> comienza con
+      // image -> contiene la palabra image
+      // / -> termina con
+    condicion = imagenType.test(imagen.type); 
   }
   const labelImagen = document.getElementById("label-imagen");
   estiloCondicion(condicion, labelImagen);

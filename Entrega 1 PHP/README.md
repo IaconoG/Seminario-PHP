@@ -6,8 +6,9 @@
  - superglobal 
   - https://www.w3schools.com/php/php_superglobals.asp
 
-  
-
+# Paginas utilizadas
+  - Colores
+    - https://randoma11y.com/
 
 # TODO
   - Crear el agregar juegos (/agregar/php/BD_AgregarJuegos.php)

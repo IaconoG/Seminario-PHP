@@ -4,8 +4,6 @@
     se utiliza para obtener datos de un formulario HTML a través de una solicitud HTTP POST. 
     Los datos se envían en el cuerpo de la solicitud HTTP, por lo que no son visibles para el usuario
   */
-  echo '<br>';
-
   $valido = true;
   $errores = array();
 
@@ -16,17 +14,15 @@
     // $_FILES['imagen']['error'] -> Contiene el código de error de la subida del archivo
     // UPLOAD_ERR_OK -> Constante que indica que el archivo se subió correctamente
   if ($imagen != '') {
-    $nombreImagen = $imagen['name'];
-    // el nmombre debe ser codigicado en base64 -> string
-    $tipoImagen = $imagen['type'];
-    // Validar si la imagen es de tipo BLOB (ni idea como hacer eso)
+    $tipoImagen = $imagen['type'];   
+    $tempFile = $imagen['tmp_name']; // Obtenemos la ubicaion temporal del archivo en el servidor
+    $contenImg = file_get_contents($tempFile); // Obtenemos el contenido del archivo
+    $nombreImagen = base64_encode($contenImg); // Codificamos el contenido del archivo en base64
   }
-    
-  
   $descripcion = htmlspecialchars($_POST['descripcion']);
-  $plataformas = (isset($_POST['plataformas'])) ? $_POST['plataformas'] : '';
+  $plataformas = (isset($_POST['plataformas'])) ? $_POST['plataformas'] : ''; 
   $url = htmlspecialchars($_POST['url']);
-  $generos = (isset($_POST['generos'])) ? $_POST['generos'] : '';
+  $generos = (isset($_POST['generos'])) ? $_POST['generos'] : ''; // intval() -> Convierte un valor a entero
 
   // Validamos el nombre
   if (empty($nombre)) {
@@ -38,11 +34,14 @@
   if (empty($imagen)) {
     $valido = false;
     $errores[] = 'La imagen no puede estar vacia';
-  } elseif ($imagen['type'] != 'application/octet-stream') {
-    // Verificar que el tipo de archivo sea BLOB
-    $valido = false;
-    $errores[] = "La imagen debe ser de tipo BLOB.";
+  } else {
+    $tiposImage = array('image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp', 'image/svg+xml'); // Creamos un array con los tipos de imagenes permitidos
+    if (!in_array($tipoImagen, $tiposImage)) { // in_array() -> Comprueba si un valor existe en un array
+      $valido = false;
+      $errores[] = "La imagen debe ser de tipo BLOB.";
+    }
   }
+  // elseif ($imagen['type'] != 'application/octet-stream') -> Verificar que el tipo de archivo sea BLOB pero no entendi lo de aplicacion/octet-stream 
 
   // Validamos la descripcion
   if (strlen($descripcion) > 255) { // strlen() -> Devuelve la longitud de una cadena
@@ -53,7 +52,7 @@
   // Validamos las plataformas
   if (empty($plataformas)) {
     $valido = false;
-    $errores[] = 'Debe seleccionar al menos una plataforma';
+    $errores[] = 'Debe seleccionar al una plataforma';
   }
   
   // Validamos la url
@@ -65,7 +64,7 @@
   // Validamos los generos
   if (empty($generos)) {
     $valido = false;
-    $errores[] = 'Debe seleccionar al menos un genero';
+    $errores[] = 'Debe seleccionar al un genero';
   } 
 
   
