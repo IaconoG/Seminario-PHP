@@ -121,9 +121,11 @@ body {
 }
 .contenido {
   display: flex;
-  max-width: 80vw;
+  width: 80vw;
   min-width: 700px;
   min-height: 100%;
+  border-radius: var(--default-radius-border);
+  overflow: hidden;
 }
 /* Menu de Filtros (aside) */
 .filtros {
@@ -187,20 +189,24 @@ select::-webkit-scrollbar-thumb:active {
 }
 .bloque-juegos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(330px, max-content));
     /* Permite q las columnas se ajusten automaticamente para adaptarse al ancho disponible del contenedor */
     /* auto-fit -> crea tantas columas como sea posible para llenar el espacio disponible */
     /* minmax(min, max) -> Especifica el tama;o minimo y maximo de cada columna */
     /* 1fr -> 1 fraccion de espacio, la columna puede crecer para ocupar el espacio disponible si hay */
-  gap: 4rem;
+
+  gap: 5rem 4rem;
 }
+
 .juego {
+  --padding: 1.5rem 2rem;
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+  justify-self: center;
   border-radius: 1rem;
   box-shadow: var(--shadow-default);
-  overflow: hidden;
-  --padding: 1.5rem 2rem;
   background-color: var(--clr-segndo);
-
 }
 .juego .header-juego {
   min-height: 200px;
