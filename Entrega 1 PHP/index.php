@@ -3,9 +3,9 @@
     // session_start() -> se debe llamar al comienzo de cada página que utilice variables de sesión.
     // Los datos de sesión en PHP se almacenan en el servidor.
   $pathConexion = 'config/';
-  require('components/get/getOpcionesNombresJuegos.php');
-  require('components/get/getOpcionesGeneros.php');
-  require('components/get/getOpcionesPlataformas.php');
+  require_once('components/get/getOpcionesNombresJuegos.php');
+  require_once('components/get/getOpcionesGeneros.php');
+  require_once('components/get/getOpcionesPlataformas.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +22,7 @@
 
 <body>
   <!-- HEADER -->
-  <?php require('components/header/header.php') ?>
+  <?php require_once('components/header/header.php') ?>
   <!-- CONTENIDO DE LA PAGINA -->
   <main class="main">
     <div class="contenido">
@@ -35,7 +35,7 @@
             <label for="filtro-nombre" class="titulo-filtro">Por nombre</label>
             <input id="filtro-nombre" name="filtro-nombre" list="nombres" />
             <datalist id="nombres">
-              <?php require('components/includes/opciones_nombres.php')?>
+              <?php require_once('components/includes/opciones_nombres.php')?>
             </datalist>
           </div>
           <!-- Filtro por genero -->
@@ -43,7 +43,7 @@
             <label for="filtro-generos" class="titulo-filtro">Por Genero</label>
             <select name="filtro-generos" id="filtro-generos" title="listado-plataformas">
               <option value="-1">Ninguna selección</option>
-              <?php require('components/includes/opciones_genero.php') ?>
+              <?php require_once('components/includes/opciones_genero.php') ?>
             </select>
           </div>
           <!-- Filtro por plataforma -->
@@ -51,7 +51,7 @@
             <label for="filtro-plataformas" class="titulo-filtro">Por plataforma</label>
             <select name="filtro-plataformas" id="filtro-plataformas" title="listado-plataformas">
               <option value="-1">Ninguna selección</option>
-              <?php require('components/includes/opciones_plataforma.php') ?>
+              <?php require_once('components/includes/opciones_plataforma.php') ?>
             </select>
           </div>
           <div class="ordenamiento_juego">
@@ -82,7 +82,7 @@
     </div>
   </main>
   <!-- FOOTER -->
-  <?php require('components/footer/footer.php') ?>
+  <?php require_once('components/footer/footer.php') ?>
 </body>
 
 <!-- scripts -->
