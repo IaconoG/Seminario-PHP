@@ -39,6 +39,7 @@
         if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, lo agregamos a la consulta
           $filtroNombre = mysqli_real_escape_string($conexion, $filtroNombre); // mysqli_real_escape_string($conexion, var) -> Escapa los caracteres especiales de una cadena 
           $sql .= "nombre LIKE '%$filtroNombre%' "; // % -> representa cero, uno o varios caracteres
+            // like -> buscar un patrón específico en una columna.
         }
         if (!empty($filtroGenero)) {
           if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, agregamos un AND a la consulta
@@ -85,5 +86,5 @@
     $_SESSION['msg'] = "Acceso no autorizado";
   }
 header('Location: ../index.php');
-exit; 
+exit; // para asegurarte de que el código se detenga y la redirección se realice correctamente
   
