@@ -14,7 +14,7 @@
   //** Mostramos los nombres en la pagina */
   $_SESSION['nombreJuegos'] = array();
   while ($nombreJuego = mysqli_fetch_assoc($resultado)) {
-    $_SESSION['nombreJuegos'][] = $nombreJuego['nombre'];
+    $_SESSION['nombreJuegos'][$nombreJuego['nombre']] = $nombreJuego['nombre'];
   }
   
   /** Cerramos la conexion **/
