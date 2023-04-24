@@ -37,6 +37,7 @@
       if (!empty($filtroNombre) || !empty($filtroGenero) || !empty($filtroPlataforma)) { // Si el usuario ingreso algun tipo de filtro, agregamos un WHERE a la consulta
         $sql .= " WHERE ";
         if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, lo agregamos a la consulta
+          $filtroNombre = mysqli_real_escape_string($conexion, $filtroNombre); // mysqli_real_escape_string($conexion, var) -> Escapa los caracteres especiales de una cadena 
           $sql .= "nombre LIKE '%$filtroNombre%' "; // % -> representa cero, uno o varios caracteres
         }
         if (!empty($filtroGenero)) {
@@ -67,8 +68,8 @@
       if (mysqli_num_rows($resultadoJuegos) == 0) { // Si no se encontraron juegos con los filtros seleccionados
         $msg = 'No se encontraron juegos con los filtros seleccionados:\n'
           .' Nombre: '.$filtroNombre.'\n'
-          .' Género: '.$filtroGenero.'\n'
-          .' Plataforma: '.$filtroPlataforma.'\n';
+          .' Género: '.$_SESSION['generos'][$filtroGenero].'\n'
+          .' Plataforma: '.$_SESSION['plataformas'][$filtroPlataforma].'\n';
         
         $_SESSION['msg'] = $msg;
       } else { 
