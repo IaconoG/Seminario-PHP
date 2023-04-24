@@ -11,11 +11,7 @@
     - https://randoma11y.com/
 
 # TODO
-  - Crear el agregar juegos (/agregar/php/BD_AgregarJuegos.php)
-  - Mostrar los juegos de la base de datos (BD_MostrarJuegos.php) todos
-  - 
-  - 
-  - Filtrar los juegos (BD_FiltrarJuegos.php) esto a lo ultimo porq ni idea como
+  
 
 ## Leer sobre
   - FOMRS

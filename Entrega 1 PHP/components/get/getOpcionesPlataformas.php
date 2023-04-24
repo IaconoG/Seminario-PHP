@@ -4,7 +4,7 @@
 
 
   //** Obtenemos los datos de la base de datos **//
-  $sql = "SELECT * FROM plataformas"; // Consulta SQL
+  $sql = "SELECT * FROM plataformas ORDER BY nombre ASC"; // Consulta SQL
   $resultado = mysqli_query($conexion, $sql); // Ejecuta una consulta en la base de datos
 
   if (!$resultado) { // Si la consulta no se ejecuta correctamente

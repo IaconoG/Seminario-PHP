@@ -12,11 +12,9 @@
   }
 
   //** Mostramos los nombres en la pagina */
-  $row = 'nombre';
-  while ($juego = mysqli_fetch_assoc($resultado)) {
-    $nombreJuego = $juego[$row];
-    $option = "<option value=\"$nombreJuego\" name=\"$nombreJuego\"></option>";    
-    echo $option;
+  $_SESSION['nombreJuegos'] = array();
+  while ($nombreJuego = mysqli_fetch_assoc($resultado)) {
+    $_SESSION['nombreJuegos'][] = $nombreJuego['nombre'];
   }
   
   /** Cerramos la conexion **/

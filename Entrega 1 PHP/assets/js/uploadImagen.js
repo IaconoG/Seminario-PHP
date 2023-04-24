@@ -9,4 +9,5 @@ const labelImagen = document.getElementById('label-imagen');
 
 inputImagen.addEventListener('change', () => {
     labelImagen.innerText = inputImagen.files[0].name;
+    labelImagen.style.color = "var(--clr-negro)";
 });
