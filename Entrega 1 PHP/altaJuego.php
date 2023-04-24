@@ -18,7 +18,7 @@
 
 <body>
   <!-- HEADER -->
-  <?php require('components/header/header.php') ?>
+  <?php require_once('components/header/header.php') ?>
   <!-- CONTENIDO DE LA PAGINA -->
   <main class="main">
     <div class="contenido">
@@ -40,7 +40,7 @@
         <div>
           <label for="plataforma">Plataforma:</label>
           <select name="plataformas" id="plataformas" title="listado-plataformas" multiple> 
-            <?php require('components/includes/opciones_plataforma.php') ?>
+            <?php require_once('components/includes/opciones_plataforma.php') ?>
           </select>
         </div>
         <div>
@@ -51,7 +51,7 @@
         <div>
           <label for="genero">Genero:</label>
           <select name="generos" id="generos" title="listado-generos" multiple>
-            <?php require('components/includes/opciones_genero.php') ?>
+            <?php require_once('components/includes/opciones_genero.php') ?>
           </select>
         </div>
         <input type="submit" value="Enviar" onclick="validarFormulario()" ></input>
@@ -59,7 +59,7 @@
     </div>
   </main>
   <!-- FOOTER -->
-  <?php require('components/footer/footer.php') ?>
+  <?php require_once('components/footer/footer.php') ?>
 </body>
 <!-- SCRIPTS -->
 <!-- <script src="assets/js/seleccionMultiple.js"></script> -->
