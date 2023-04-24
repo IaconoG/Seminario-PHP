@@ -17,12 +17,12 @@
     $tipoImagen = $imagen['type'];   
     $tempFile = $imagen['tmp_name']; // Obtenemos la ubicaion temporal del archivo en el servidor
     $contenImg = file_get_contents($tempFile); // Obtenemos el contenido del archivo
-    $nombreImagen = base64_encode($contenImg); // Codificamos el contenido del archivo en base64
+    $nombreImagen = base64_encode($contenImg); // Codificamos el contenido del archivo en base64 (nos da ese texto gigante)
   }
   $descripcion = htmlspecialchars($_POST['descripcion']);
   $plataformas = (isset($_POST['plataformas'])) ? $_POST['plataformas'] : ''; 
   $url = htmlspecialchars($_POST['url']);
-  $generos = (isset($_POST['generos'])) ? $_POST['generos'] : ''; // intval() -> Convierte un valor a entero
+  $generos = (isset($_POST['generos'])) ? $_POST['generos'] : '';
 
   // Validamos el nombre
   if (empty($nombre)) {
@@ -41,7 +41,6 @@
       $errores[] = "La imagen debe ser de tipo BLOB.";
     }
   }
-  // elseif ($imagen['type'] != 'application/octet-stream') -> Verificar que el tipo de archivo sea BLOB pero no entendi lo de aplicacion/octet-stream 
 
   // Validamos la descripcion
   if (strlen($descripcion) > 255) { // strlen() -> Devuelve la longitud de una cadena

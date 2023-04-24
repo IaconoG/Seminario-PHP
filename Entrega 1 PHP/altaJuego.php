@@ -40,7 +40,7 @@
         <div>
           <label for="plataforma">Plataforma:</label>
           <select name="plataformas" id="plataformas" title="listado-plataformas" multiple> 
-            <?php require('components/mostrarDatos/opciones_plataforma.php') ?>
+            <?php require('components/includes/opciones_plataforma.php') ?>
           </select>
         </div>
         <div>
@@ -51,7 +51,7 @@
         <div>
           <label for="genero">Genero:</label>
           <select name="generos" id="generos" title="listado-generos" multiple>
-            <?php require('components/mostrarDatos/opciones_genero.php') ?>
+            <?php require('components/includes/opciones_genero.php') ?>
           </select>
         </div>
         <input type="submit" value="Enviar" onclick="validarFormulario()" ></input>

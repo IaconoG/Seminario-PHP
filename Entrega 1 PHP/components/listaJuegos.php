@@ -13,7 +13,7 @@
   }
   
   while ($juego = mysqli_fetch_assoc($resultado)) {
-    require 'mostrarDatos/displayJuegos.php';
+    require 'includes/displayJuegos.php';
   }
 
   mysqli_free_result($resultado); // Libera la memoria asociada al resultado

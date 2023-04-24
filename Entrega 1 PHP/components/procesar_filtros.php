@@ -12,15 +12,17 @@
       // isset() -> Determina si una variable está definida y no es NULL
     $filtroGenero = isset($_GET['filtro-generos']) ? $_GET['filtro-generos'] : '';
     $filtroPlataforma = isset($_GET['filtro-plataformas']) ? $_GET['filtro-plataformas'] : '';
+    $filtroOrdenamiento = isset($_GET['filtro-ordenamiento']) ? $_GET['filtro-ordenamiento'] : '';
 
     // Validamos que el usuario haya seleccionado al menos un filtroPlataforma
-    if (empty($filtroNombre) && empty($filtroGenero) && empty($plataforma)) {
+    if (empty($filtroNombre) && empty($filtroGenero) && empty($plataforma) && empty($filtroOrdenamiento)) {
       $_SESSION['msg'] = "Debe seleccionar al menos un filtro";
-    } elseif (empty($filtroNombre) && ($filtroGenero == -1) && ($filtroPlataforma == -1)) { // Opcion donde debemos restablecer por defecto los juegos
+    } elseif (empty($filtroNombre) && ($filtroGenero == -1) && ($filtroPlataforma == -1) && ($filtroOrdenamiento == -1)) { // Opcion donde debemos restablecer por defecto los juegos
       unset($_SESSION['juegosFiltrados']);
     } else { // Si el usuario selecciono al menos un filtro, filtramos los juegos      
       if ($filtroGenero == -1) $filtroGenero = ''; // Para que no sea -1 parte de la consulta
       if ($filtroPlataforma == -1) $filtroPlataforma = ''; // Para que no sea -1 parte de la consulta
+      if ($filtroOrdenamiento == -1) $filtroOrdenamiento = ''; // Para que no sea -1 parte de la consulta
 
       // Conectamos a la base de datos
       require '../config/conexionBD.php';
@@ -29,23 +31,32 @@
         // WHERE -> filtra los registros de una tabla
         // like -> buscar un patrón específico en una columna.
           // % -> representa cero, uno o varios caracteres
-      $sql = "SELECT * FROM juegos WHERE ";
+      $sql = "SELECT * FROM juegos";
 
-      if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, lo agregamos a la consulta
-        $sql .= "nombre LIKE '%$filtroNombre%' ";
-      }
-      if (!empty($filtroGenero)) {
-        if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, agregamos un AND a la consulta
-          $sql .= "AND ";
+      // - Filtros
+      if (!empty($filtroNombre) || !empty($filtroGenero) || !empty($filtroPlataforma)) { // Si el usuario ingreso algun tipo de filtro, agregamos un WHERE a la consulta
+        $sql .= " WHERE ";
+        if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, lo agregamos a la consulta
+          $sql .= "nombre LIKE '%$filtroNombre%' "; // % -> representa cero, uno o varios caracteres
         }
-        $sql .= "id_genero = '$filtroGenero' ";
-      }
-      if (!empty($filtroPlataforma)) {
-        if (!empty($filtroNombre) || !empty($filtroGenero)) { // Si el usuario ingreso un nombre o un genero, agregamos un AND a la consulta
-          $sql .= "AND ";
+        if (!empty($filtroGenero)) {
+          if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, agregamos un AND a la consulta
+            $sql .= "AND ";
+          }
+          $sql .= "id_genero = '$filtroGenero' ";
         }
-        $sql .= "id_plataforma = '$filtroPlataforma' ";
-      }      
+        if (!empty($filtroPlataforma)) {
+          if (!empty($filtroNombre) || !empty($filtroGenero)) { // Si el usuario ingreso un nombre o un genero, agregamos un AND a la consulta
+            $sql .= "AND ";
+          }
+          $sql .= "id_plataforma = '$filtroPlataforma' ";
+        } 
+      } 
+      // - Ordenamiento
+      if (!empty($filtroOrdenamiento)) {
+        $sql .= " ORDER BY nombre $filtroOrdenamiento";
+      }
+
       // Ejecutamos la consulta
       $resultadoJuegos = mysqli_query($conexion, $sql);
       if (!$resultadoJuegos) {
