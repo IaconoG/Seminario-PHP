@@ -1,18 +1,7 @@
-# Bibliografia utilizada
-
- - mysqli_fetch_assoc()
-  - https://www.w3schools.com/PHP/func_mysqli_fetch_assoc.asp
-
- - superglobal 
-  - https://www.w3schools.com/php/php_superglobals.asp
-
 # Paginas utilizadas
   - Colores
     - https://randoma11y.com/
-
-# TODO
   
-
 ## Leer sobre
   - FOMRS
     - input[name=""]: nombre de refencia cunado se envia el formulario
@@ -25,3 +14,40 @@
     En este caso, cuando se envía el formulario, se enviará a la misma página en la que se encuentra el formulario ($_SERVER["PHP_SELF"]), y la acción de la página se procesará en el mismo archivo de PHP.
   
   - htmlspecialchars
+
+
+
+# Infromacion Entrega 1
+
+## Post formulario de juegos
+  - altaJuego.php
+    - components/postFormularioJuego.php
+    - components/validarPostJuegos.php
+    - assets/css/estilosAgeregarJuego.css
+    - assets/js/validacion-form-agregar.js
+    - assets/js/uploadImagen.js
+    - assets/js/mostrarOpciones.js
+
+## Pagina princiapl
+  - index.php
+    - components/listaJuegos.php
+    - components/includes/displayJuegos.php
+    - components/includes/displayMsg.php
+    - assets/css/estilos.css
+    - components/header/header.php
+      - components/header/header.css
+    - components/footer/footer.php
+      - components/footer/footer.css
+
+## Filtros de juegos
+  - index.php
+    - components/listaJuegosFiltrados.php
+      - components/procesarFiltros.php
+  ### Visual
+    - components/get/getOpcionesGeneros.php
+    - components/get/getOpcionesPlataformas.php
+    - components/get/getOpcionesNombresJuegos.php
+    - components/includes/opciones_genero.php
+    - components/includes/opciones_plataforma.php
+    - components/includes/opciones_nombre_juego.php
+    - assets/js/mostrarOpciones.js

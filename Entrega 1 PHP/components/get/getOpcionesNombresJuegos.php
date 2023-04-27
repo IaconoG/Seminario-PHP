@@ -1,6 +1,7 @@
 <?php 
   //** Conectamos a la base de datos **/
-  require ('config/conexionBD.php');
+  require_once ('config/conexionBD.php');
+  $conexion = conectarBD();
 
   //** Obtenemos los nombres de la tabla juegos */
   $sql = "SELECT nombre FROM juegos ORDER BY nombre ASC"; // Consulta SQL con orden ascendente (A a Z)

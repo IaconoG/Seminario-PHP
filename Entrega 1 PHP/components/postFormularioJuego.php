@@ -8,6 +8,7 @@
       // $_SERVER['REQUEST_METHOD'] -> Devuelve el método de solicitud utilizado para acceder a la página actual.
     // Validamos la informacion
     require 'validarPostJuegos.php';
+    
 
     unset($_POST);
       // unset() -> Elimina la información registrada de una variable
@@ -15,7 +16,7 @@
         // Para evitar que se vuelvan a enviar accidentalmente si el usuario recarga la página o realiza otra acción que envíe nuevamente el formulario.
 
     if ($valido) { // Si la informacion es valida, la insertamos en la base de datos
-      insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos);
+      // insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos);
       $msg = "Juego creado con exito";
     } else {
       // Si hay errores, imprimir los mensajes de error en la consola del navegador
@@ -32,11 +33,14 @@
     $_SESSION['msg'] = "Acceso no autorizado";
   }
   header('Location: ../index.php'); // Para no quedarnos en la pagina php y poder ver los datos que se envian, redireccionamos a index.php
-  exit; // para asegurarte de que el código se detenga y la redirección se realice correctamente
+  exit; // para asegurarte de que el código se detenga y la redirección se realice correctamente.
+
+
   
   function insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos) {
     // Conectamos a la base de datos
-    require '../config/conexionBD.php';
+    require_once '../config/conexionBD.php';
+    $conexion = conectarBD();
     
     $sql = "INSERT INTO juegos (id, nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES (NULL ,'$nombre', '$nombreImagen', '$tipoImagen', '$descripcion', '$url', '$generos', '$plataformas')";
     $resultado = mysqli_query($conexion, $sql);

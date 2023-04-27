@@ -89,16 +89,10 @@
 <script src="assets/js/mostrarOpciones.js"></script>
 
 <!-- PHP -->
-<!-- Agregamos opciones a la BD para tener como default porque no quiero agregarlo a mano -->
+<!-- Agregamos opciones a la BD para tener como default porque no quiero agregarlo manualmente :D -->
 <? // php require('components/post/postOpciones.php') ?>
-<?php 
-  if (!empty($_SESSION['msg'])) {
-    echo "<script>alert('".$_SESSION['msg']."')</script>";
-    unset($_SESSION['msg']);
-  } 
-?>
+<?php require('components/includes/displayMsg.php') ?>
 
 </html>
 
 <!-- TODO: Creo q lo ultimo q falta es el ordenamietno q me parece mejor por js pero vamos a hacerlor por php. Hacer un from aparte para el ordenamiento -->
-

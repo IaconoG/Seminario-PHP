@@ -37,7 +37,8 @@ function insertarDatos($conexion, $tabla, $valores) {
 }
 
 // === Conectamos a la base de datos === 
-include 'config/conexionBD.php';
+require_once 'config/conexionBD.php';
+$conexion = conectarBD();
 
 // === Verificar si la tabla Plataformas esta vacia ===
 $sql = mysqli_query($conexion, "SELECT COUNT(*) FROM plataformas"); // Creamos la consulta

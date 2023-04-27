@@ -1,7 +1,6 @@
 <?php 
   session_start();
   // Filtrar los juegos segun los filtros elegidos por el usuario
-  // Esto al final porque no tengo idea de como hacerlo :D
   
   // Comprobamos si accedieron usando el formulario
   if ($_SERVER['REQUEST_METHOD'] == 'GET') { // Si accedieron usando el formulario, obtenemos la informacion del formulario
@@ -14,18 +13,23 @@
     $filtroPlataforma = isset($_GET['filtro-plataformas']) ? $_GET['filtro-plataformas'] : '';
     $filtroOrdenamiento = isset($_GET['filtro-ordenamiento']) ? $_GET['filtro-ordenamiento'] : '';
 
+    // filtros vacios = no seleccionados
+    $allFiltrosDefault = (empty($filtroNombre) && ($filtroGenero == -1) && ($filtroPlataforma == -1));
+
     // Validamos que el usuario haya seleccionado al menos un filtroPlataforma
-    if (empty($filtroNombre) && empty($filtroGenero) && empty($plataforma) && empty($filtroOrdenamiento)) {
-      $_SESSION['msg'] = "Debe seleccionar al menos un filtro";
-    } elseif (empty($filtroNombre) && ($filtroGenero == -1) && ($filtroPlataforma == -1) && ($filtroOrdenamiento == -1)) { // Opcion donde debemos restablecer por defecto los juegos
+    if (($allFiltrosDefault) && ($filtroOrdenamiento == -1) && (empty($_SESSION['juegosFiltrados']))) { // Cuando no se realizo ningun filtro y no hay juegos filtrados
+      $_SESSION['msg'] = "No hay nada por hacer";
+    } elseif (($allFiltrosDefault) && ($filtroOrdenamiento == -1)) { // Opcion donde debemos restablecer por defecto los juegos
       unset($_SESSION['juegosFiltrados']);
+      $_SESSION['msg'] = "Se restablecieron los juegos";
     } else { // Si el usuario selecciono al menos un filtro, filtramos los juegos      
       if ($filtroGenero == -1) $filtroGenero = ''; // Para que no sea -1 parte de la consulta
       if ($filtroPlataforma == -1) $filtroPlataforma = ''; // Para que no sea -1 parte de la consulta
       if ($filtroOrdenamiento == -1) $filtroOrdenamiento = ''; // Para que no sea -1 parte de la consulta
 
       // Conectamos a la base de datos
-      require '../config/conexionBD.php';
+      require_once '../config/conexionBD.php';
+      $conexion = conectarBD();
       // Consulta para obtener los juegos
         // Concatenamos la consulta con los filtros elegidos por el usuario utiilizando WHERE
         // WHERE -> filtra los registros de una tabla
@@ -39,7 +43,6 @@
         if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, lo agregamos a la consulta
           $filtroNombre = mysqli_real_escape_string($conexion, $filtroNombre); // mysqli_real_escape_string($conexion, var) -> Escapa los caracteres especiales de una cadena 
           $sql .= "nombre LIKE '%$filtroNombre%' "; // % -> representa cero, uno o varios caracteres
-            // like -> buscar un patrón específico en una columna.
         }
         if (!empty($filtroGenero)) {
           if (!empty($filtroNombre)) { // Si el usuario ingreso un nombre, agregamos un AND a la consulta
@@ -67,11 +70,14 @@
       }
 
       if (mysqli_num_rows($resultadoJuegos) == 0) { // Si no se encontraron juegos con los filtros seleccionados
-        $msg = 'No se encontraron juegos con los filtros seleccionados:\n'
-          .' Nombre: '.$filtroNombre.'\n'
-          .' Género: '.$_SESSION['generos'][$filtroGenero].'\n'
-          .' Plataforma: '.$_SESSION['plataformas'][$filtroPlataforma].'\n';
-        
+        if (!$allFiltrosDefault) {
+          $msg = 'No se encontraron juegos con los filtros seleccionados:\n'
+            .' Nombre: '.$filtroNombre.'\n'
+            .' Género: '.$_SESSION['generos'][$filtroGenero].'\n'
+            .' Plataforma: '.$_SESSION['plataformas'][$filtroPlataforma].'\n';
+        } else {
+          $msg = 'No se puede hacer ordenamietno debido a que no hay juegos cargados';
+        }
         $_SESSION['msg'] = $msg;
       } else { 
         // Almacenamos los juegos filtrados en un arreglo
@@ -80,11 +86,12 @@
           $juegosFiltrados[] = $juego;
         }
         $_SESSION['juegosFiltrados'] = $juegosFiltrados;
+        $_SESSION['msg'] = "Filtro realizado con exito";
       }
     }
   } else { // Si accedieron a este archivo sin usar el formulario, los redireccionamos al index
     $_SESSION['msg'] = "Acceso no autorizado";
   }
 header('Location: ../index.php');
-exit; // para asegurarte de que el código se detenga y la redirección se realice correctamente
+exit; 
   

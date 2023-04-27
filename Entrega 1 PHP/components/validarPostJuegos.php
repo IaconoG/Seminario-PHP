@@ -39,10 +39,21 @@
     if (!in_array($tipoImagen, $tiposImage)) { // in_array() -> Comprueba si un valor existe en un array
       $valido = false;
       $errores[] = "La imagen debe ser de tipo BLOB.";
+    } else {
+      require_once('get/getMaxCharImgBD.php'); // Incluimos el codigo para obtener el maximo de caracteres de la catergoria imagen
+      $maxChar = maxCaracterImg(); // Obtenemos el maximo de caracteres de la catergoria imagen
+      if (strlen($nombreImagen) > $maxChar) { // nombre de img ya codificado en base64
+        $valido = false;
+        $errores[] = "La imagen es demasiado grande. ";
+      }
     }
   }
 
   // Validamos la descripcion
+  if (empty($descripcion)) {
+    $valido = false;
+    $errores[] = 'La descripcion no puede estar vacia';
+  }
   if (strlen($descripcion) > 255) { // strlen() -> Devuelve la longitud de una cadena
     $valido = false;
     $errores[] = 'La descripcion no puede tener mas de 255 caracteres';
@@ -55,6 +66,10 @@
   }
   
   // Validamos la url
+  if (empty($url)) {
+    $valido = false;
+    $errores[] = 'La url no puede estar vacia';
+  }
   if (strlen($url) > 80) {
     $valido = false;
     $errores[] = 'La url no puede tener mas de 80 caracteres';
