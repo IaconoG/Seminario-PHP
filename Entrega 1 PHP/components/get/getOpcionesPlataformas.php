@@ -1,6 +1,7 @@
 <?php
   //** Conectamos a la base de datos **//
-  require ($pathConexion."conexionBD.php");
+  require_once ($pathConexion."conexionBD.php");
+  $conexion = conectarBD();
 
 
   //** Obtenemos los datos de la base de datos **//

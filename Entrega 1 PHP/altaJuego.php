@@ -45,7 +45,7 @@
         </div>
         <div>
           <label for="url">URL:</label>
-          <input type="text" id="url" name="url" maxlength="70"placeholder="https://www.ageofempires.com/games/aoeiiide"/>
+          <input type="text" id="url" name="url" maxlength="80" placeholder="https://www.ageofempires.com/games/aoeiiide"/>
           
         </div>
         <div>
@@ -62,10 +62,9 @@
   <?php require_once('components/footer/footer.php') ?>
 </body>
 <!-- SCRIPTS -->
-<!-- <script src="assets/js/seleccionMultiple.js"></script> -->
 <script src="assets/js/uploadImagen.js"></script>
 <script src="assets/js/validacion-form-agregar.js"></script>
-
+<script src="assets/js/mostrarOpciones.js"></script>
 <!-- PHP -->
 <?php 
   if (!empty($_SESSION['msg'])) {

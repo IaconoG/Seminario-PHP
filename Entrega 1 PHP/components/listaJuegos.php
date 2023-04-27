@@ -1,7 +1,8 @@
 <?php
 //** Get juegos para mostrar en la pagina **/
   // Conectamos a la base de datos
-  require 'config/conexionBD.php';
+  require_once 'config/conexionBD.php';
+  $conexion = conectarBD();
 
   // Consulta para obtener los juegos
   $sql = "SELECT * FROM juegos";
