@@ -14,7 +14,7 @@
     // $_FILES['imagen']['error'] -> Contiene el código de error de la subida del archivo
     // UPLOAD_ERR_OK -> Constante que indica que el archivo se subió correctamente
   if ($imagen != '') {
-    $tipoImagen = $imagen['type'];   
+    $tipoImagen = pathinfo($imagen['type'], PATHINFO_EXTENSION);   
     $tempFile = $imagen['tmp_name']; // Obtenemos la ubicaion temporal del archivo en el servidor
     $contenImg = file_get_contents($tempFile); // Obtenemos el contenido del archivo
     $nombreImagen = base64_encode($contenImg); // Codificamos el contenido del archivo en base64 (nos da ese texto gigante)
