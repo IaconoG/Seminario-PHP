@@ -9,8 +9,7 @@
   $resultado = mysqli_query($conexion, $sql);
 
   if (!$resultado) {
-    echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-    die();
+    die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
   }
   
   while ($juego = mysqli_fetch_assoc($resultado)) {

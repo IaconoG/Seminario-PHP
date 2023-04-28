@@ -95,4 +95,3 @@
 
 </html>
 
-<!-- TODO: Creo q lo ultimo q falta es el ordenamietno q me parece mejor por js pero vamos a hacerlor por php. Hacer un from aparte para el ordenamiento -->

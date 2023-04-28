@@ -46,8 +46,7 @@
     $resultado = mysqli_query($conexion, $sql);
     
     if (!$resultado) {
-      echo '<script>alert("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-      die();
+      die('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
     }
     // mysqli_free_result($resultado); // Libera la memoria asociada al resultado
     mysqli_close($conexion); // Cierra la conexion a la base de datos

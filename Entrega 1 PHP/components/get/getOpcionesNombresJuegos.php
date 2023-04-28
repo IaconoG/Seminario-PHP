@@ -8,8 +8,7 @@
   $resultado = mysqli_query($conexion, $sql); // Ejecuta una consulta en la base de datos
 
   if (!$resultado) { // Si la consulta no se ejecuta correctamente
-    echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-    die();
+    die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
   }
 
   //** Mostramos los nombres en la pagina */

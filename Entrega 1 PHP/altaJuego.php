@@ -66,10 +66,5 @@
 <script src="assets/js/validacion-form-agregar.js"></script>
 <script src="assets/js/mostrarOpciones.js"></script>
 <!-- PHP -->
-<?php 
-  if (!empty($_SESSION['msg'])) {
-    echo "<script>alert('".$_SESSION['msg']."')</script>";
-    unset($_SESSION['msg']);
-  } 
-?>
+<?php require('components/includes/displayMsg.php') ?>
 </html>
