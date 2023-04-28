@@ -28,8 +28,7 @@
     $resultado = mysqli_query($conexion, $sql);
 
     if (!$resultado) { // Si la consulta no se ejecuta correctamente
-      echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-      die();
+      die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
     }
 
     // Obtenemos el resultado

@@ -65,8 +65,7 @@
       // Ejecutamos la consulta
       $resultadoJuegos = mysqli_query($conexion, $sql);
       if (!$resultadoJuegos) {
-        echo '<script>alert("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-        die();
+        die('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
       }
 
       if (mysqli_num_rows($resultadoJuegos) == 0) { // Si no se encontraron juegos con los filtros seleccionados

@@ -46,8 +46,7 @@ $sql = mysqli_query($conexion, "SELECT COUNT(*) FROM plataformas"); // Creamos l
 $filas = mysqli_fetch_array($sql); // Obtenemos el numero de filas de la tabla
 
 if (!$filas) {
-  echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-  die();
+  die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
 }
 
 if ($filas[0] == 0) { // Si la tabla esta vacia
@@ -65,8 +64,7 @@ if ($filas[0] == 0) { // Si la tabla esta vacia
         insertarDatos($conexion, "plataformas", $plataforma);
       }
     } else {
-      echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-      die();
+      die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
     }
   }
 }
@@ -77,8 +75,7 @@ $sql = mysqli_query($conexion, "SELECT COUNT(*) FROM generos");
 $filas = mysqli_fetch_array($sql);
 
 if (!$filas) {
-  echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-  die();
+  die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
 }
 
 if ($filas[0] == 0) {
@@ -94,8 +91,7 @@ if ($filas[0] == 0) {
         insertarDatos($conexion, "generos", $genero);
       }
     } else {
-      echo '<script>console.error("Error al ejecutar la consulta: ' .  mysqli_error($conexion) . '")</script>';
-      die();
+      die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
     }
   }
 }

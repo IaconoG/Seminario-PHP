@@ -1,5 +1,4 @@
-<?php
-    // Mostramos los datos en la pagina
-  foreach ($_SESSION['nombreJuegos'] as $nombreJuego) {
-    echo "<option value=\"$nombreJuego\" name=\"$nombreJuego\"></option>";
-  }
+<!-- Mostramos los datos en la página -->
+<?php foreach ($_SESSION['nombreJuegos'] as $nombreJuego) { ?>
+  <option value="<?= $nombreJuego; ?>" name="<?= $nombreJuego; ?>"></option>
+<?php } ?>
