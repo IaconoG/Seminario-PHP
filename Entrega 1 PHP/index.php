@@ -1,13 +1,14 @@
 <?php
   //Agregamos opciones a la BD para tener como default porque no quiero agregarlo manualmente :D 
-  require('components/post/postOpciones.php'); //  Este archivo no es necesario obligatorio usar 
+  //require('components/post/postOpciones.php'); //  Este archivo no es necesario  usar 
+
   session_start(); // Esta función crea o reanuda una sesión y permite el acceso a las variables de sesión a través de la superglobal
     // session_start() -> se debe llamar al comienzo de cada página que utilice variables de sesión.
     // Los datos de sesión en PHP se almacenan en el servidor.
   $pathConexion = 'config/';
   require_once('components/get/getOpcionesNombresJuegos.php');
   require_once('components/get/getOpcionesGeneros.php');
-  require('components/get/getOpcionesPlataformas.php');
+  require_once('components/get/getOpcionesPlataformas.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
