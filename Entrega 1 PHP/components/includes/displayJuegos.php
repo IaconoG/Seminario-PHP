@@ -1,4 +1,4 @@
-<!-- ?= es lo mismo que hacer ?php echo || se llama short echo tag -->
+<!-- ?= es lo mismo que hacer ?php echo pero mas lindo || se llama short echo tag -->
 <div class='juego' id='<?= $juego["nombre"] ?>'>
   <div class="header-juego">
     <img src="data:<?= $juego['tipo_imagen'] ?>;base64,<?= $juego['imagen'] ?>" alt="Portada del <?= $juego['nombre'] ?>" loading="lazy">

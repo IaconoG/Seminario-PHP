@@ -1,5 +1,5 @@
 /*
- * El input[type="file"] tiene display none debido a que es feo
+ * El input[type="file"] tiene display none debido a que es feo kjjj
  * El input esta asociado al label el cual se muestra, remplazando el input
  * El script accede al input[type="file"] y al label y cuando se selecciona un archivo en el input se remplaza el texto del label por el nombre del archivo
  */

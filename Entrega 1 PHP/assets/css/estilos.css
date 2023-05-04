@@ -20,9 +20,6 @@
   /* Border */
   --default-radius-border: 0.5rem;
 
-  /* Tamaños bloques */
-  --header-height-size: 10vh;
-  --footer-height-size: 5vh;
 }
 /** === Establecemos una configuracion incial del css === **/
 * {
@@ -32,7 +29,7 @@
 }
 html {
   font-size: 10px;
-  font-family: var(--ff-primero);
+  font-family: var(--ff-primero), var(--ff-segundo);
   line-height: 1.4;
   scroll-behavior: smooth;
   color: var(--clr-negro);
@@ -101,12 +98,11 @@ input[type="submit"]:hover {
   transform: scale(1.02);
 }
 
-
 /* BODY */
 body {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: var(--header-height-size) 1fr var(--footer-height-size);
+  grid-template-rows: 10vh 1fr 5vh;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   height: 100vh;
@@ -129,8 +125,6 @@ body {
 }
 /* Menu de Filtros (aside) */
 .filtros {
-  /* Estaria bueno que la seccion de filtros acompa;e para q el usuario no tenga q subir para seleccionar los filtros */
-  /* O poner un boton (flecha en alguna esquina inferior) para que suba al inicio de la pagina no se*/
   background-color: var(--clr-tercero)  ;
   width: 20vh;
   min-width: 200px;
@@ -194,7 +188,6 @@ select::-webkit-scrollbar-thumb:active {
     /* auto-fit -> crea tantas columas como sea posible para llenar el espacio disponible */
     /* minmax(min, max) -> Especifica el tama;o minimo y maximo de cada columna */
     /* 1fr -> 1 fraccion de espacio, la columna puede crecer para ocupar el espacio disponible si hay */
-
   gap: 5rem 4rem;
 }
 
@@ -272,7 +265,7 @@ select::-webkit-scrollbar-thumb:active {
   text-transform: capitalize;
   list-style-type: circle;
 }
-.juego .contenido-juego li.url {
+.juego .contenido-juego .url {
   text-transform: lowercase;
   width: 100%;
   word-wrap: break-word;

@@ -30,13 +30,12 @@
       // Conectamos a la base de datos
       require_once '../config/conexionBD.php';
       $conexion = conectarBD();
+
+      $sql = "SELECT * FROM juegos";
       // Consulta para obtener los juegos
         // Concatenamos la consulta con los filtros elegidos por el usuario utiilizando WHERE
-        // WHERE -> filtra los registros de una tabla
-        // like -> buscar un patrón específico en una columna.
-          // % -> representa cero, uno o varios caracteres
-      $sql = "SELECT * FROM juegos";
-
+        // WHERE -> filtra los registros de una tabla, y solo devuelve los que cumplan con la condicion
+      
       // - Filtros
       if (!empty($filtroNombre) || !empty($filtroGenero) || !empty($filtroPlataforma)) { // Si el usuario ingreso algun tipo de filtro, agregamos un WHERE a la consulta
         $sql .= " WHERE ";
@@ -79,18 +78,17 @@
         }
         $_SESSION['msg'] = $msg;
       } else { 
-        // Almacenamos los juegos filtrados en un arreglo
+        // Almacenamos los juegos filtrados en un arreglo y lo guardamos en la sesion
         $juegosFiltrados = array();
         while ($juego = mysqli_fetch_assoc($resultadoJuegos)) {
           $juegosFiltrados[] = $juego;
         }
         $_SESSION['juegosFiltrados'] = $juegosFiltrados;
-        $_SESSION['msg'] = "Filtro realizado con exito";
+        $_SESSION['msg'] = 'Filtro realizado con exito';
       }
     }
-  } else { // Si accedieron a este archivo sin usar el formulario, los redireccionamos al index
+  } else { // Si accedieron a este archivo sin usar el formulario
     $_SESSION['msg'] = "Acceso no autorizado";
   }
 header('Location: ../index.php');
 exit; 
-  

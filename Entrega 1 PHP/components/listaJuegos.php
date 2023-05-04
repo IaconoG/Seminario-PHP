@@ -1,5 +1,5 @@
 <?php
-//** Get juegos para mostrar en la pagina **/
+  //** Get juegos para mostrar en la pagina **/
   // Conectamos a la base de datos
   require_once 'config/conexionBD.php';
   $conexion = conectarBD();

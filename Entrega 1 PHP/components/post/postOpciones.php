@@ -1,11 +1,9 @@
 <?php 
 // **********  INSERTAR OPCIONES EN LA BASE DE DATOS  ********** //
 // Este archivo igual esta porque no quiero ingresar uno por uno los tipos de plataformas y generos asjkasj
-// Para ejecutar este archivo tendremos un boton agregar en el footer, igual esto no deberia estas hasjha
+// Para ejecutar este archivo hay q descomentar el require de este archivo que esta en el final del index
 
 // Las opciones que se insertan en la base de datos son las que se muestran en el formulario de altaJuego.php y en los formularios de index.php
-
-
 $valoresPlataformas = array (
   "Computadora",
   "PlayStation 5",
@@ -30,69 +28,66 @@ $valoresGeneros = array (
 );
 
 // === Funcion para insertar ===
-function insertarDatos($conexion, $tabla, $valores) {
-  $sql = "INSERT INTO $tabla (nombre) VALUES ('$valores')";  // Creamos la consulta
-  /* La consulta está insertando un valor en la columna "nombre" de la tabla "generos", donde el valor a insertar se almacena en la variable $genero. */
+function insertarDatos($conexion, $tabla, $valor) {
+  $sql = "INSERT INTO $tabla (nombre) VALUES ('$valor')";  // Creamos la consulta
   mysqli_query($conexion, $sql); // Ejecutamos la consulta
 }
 
-// === Conectamos a la base de datos === 
+// Conectamos a la base de datos 
 require_once 'config/conexionBD.php';
 $conexion = conectarBD();
 
-// === Verificar si la tabla Plataformas esta vacia ===
-$sql = mysqli_query($conexion, "SELECT COUNT(*) FROM plataformas"); // Creamos la consulta
-  /* Selecciona el número de filas en la tabla "generos".  */
-$filas = mysqli_fetch_array($sql); // Obtenemos el numero de filas de la tabla
+// === Obtenemos lo datos de la tabla Plataformas ===
+$sql = "SELECT nombre FROM plataformas"; // Creamos la consulta
+$resultado = mysqli_query($conexion, $sql); // ejecutamos la consulta
 
-if (!$filas) {
+if (!$resultado) {
   die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
 }
 
-if ($filas[0] == 0) { // Si la tabla esta vacia
-  // Insertarmos  las opciones en la base de datos
+$numfilas = mysqli_num_rows($resultado); // Obtenemos el numero de filas de la tabla
+
+if ($numfilas == 0) { // Si la tabla esta vacia
+  // Insertarmos todas las opciones en la base de datos
   foreach ($valoresPlataformas as $plataforma) {
     insertarDatos($conexion, "plataformas", $plataforma);
   }
 } else {  // Si la tabla contiene datos
   // Insertarmos solos los elemetnos que no esten repetidos
-  foreach ($valoresPlataformas as $plataforma) {
-    $sql = "SELECT * FROM  plataformas WHERE nombre = '$plataforma'"; // Consultamos si el dato ya existe
-    $resultado = mysqli_query($conexion, $sql);
-    if ($resultado) {
-      if (mysqli_num_rows($resultado) == 0) {
-        insertarDatos($conexion, "plataformas", $plataforma);
-      }
-    } else {
-      die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
-    }
+  $valorsBD = array();
+  while ($fila = mysqli_fetch_array($resultado)) {
+    $valorsBD[] = $fila['nombre'];
+  }
+  $valoresNoRepetidos = array_diff($valoresPlataformas, $valorsBD);
+
+  foreach ($valoresNoRepetidos as $plataforma) {
+    insertarDatos($conexion, "plataformas", $plataforma);
   }
 }
+// === Obtenemos lo datos de la tabla Generos ===
+$sql = "SELECT nombre FROM generos";
+$resultado = mysqli_query($conexion, $sql); 
 
-
-// === Verificar si la tabla Genero esta vacia ===
-$sql = mysqli_query($conexion, "SELECT COUNT(*) FROM generos"); 
-$filas = mysqli_fetch_array($sql);
-
-if (!$filas) {
+if (!$resultado) {
   die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
 }
 
-if ($filas[0] == 0) {
+$numfilas = mysqli_num_rows($resultado); 
+
+if ($numfilas == 0) { 
   foreach ($valoresGeneros as $genero) {
     insertarDatos($conexion, "generos", $genero);
   }
 } else { 
-  foreach ($valoresGeneros as $genero) {
-    $sql = "SELECT * FROM  generos WHERE nombre = '$genero'";
-    $resultado = mysqli_query($conexion, $sql);
-    if ($resultado) {
-      if (mysqli_num_rows($resultado) == 0) {
-        insertarDatos($conexion, "generos", $genero);
-      }
-    } else {
-      die ('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
-    }
+  // Insertarmos solos los elemetnos que no esten repetidos
+  $valorsBD = array();
+  while ($fila = mysqli_fetch_array($resultado)) {
+    $valorsBD[] = $fila['nombre'];
+  }
+  $valoresNoRepetidos = array_diff($valoresGeneros, $valorsBD);
+
+  foreach ($valoresNoRepetidos as $plataforma) {
+    insertarDatos($conexion, "plataformas", $plataforma);
   }
 }
 

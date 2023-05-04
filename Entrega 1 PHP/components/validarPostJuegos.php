@@ -1,5 +1,5 @@
 <?php
-/*
+  /*
     $_POST -> array asociativo que contiene los valores enviados por el método POST
     se utiliza para obtener datos de un formulario HTML a través de una solicitud HTTP POST. 
     Los datos se envían en el cuerpo de la solicitud HTTP, por lo que no son visibles para el usuario
@@ -7,7 +7,7 @@
   $valido = true;
   $errores = array();
 
-  // Obtenemos la informacion del formulario
+  // == Obtenemos la informacion del formulario ==
   $nombre = htmlspecialchars($_POST['nombre']);  // htmlspecialchars() -> Convierte caracteres especiales en sus entidades HTML equivalentes. Esta función es útil cuando se trabaja con datos que se muestran en una página web, como nombres de usuario, mensajes de correo electrónico, comentarios, entre otros.
   $imagen = (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) ? $_FILES['imagen'] : ''; 
     // isset() -> Verifica si una variable está definida y no es NULL
@@ -15,7 +15,7 @@
     // UPLOAD_ERR_OK -> Constante que indica que el archivo se subió correctamente
   if ($imagen != '') {
     $tipoImagen = $imagen['type'];   
-    $tempFile = $imagen['tmp_name']; // Obtenemos la ubicaion temporal del archivo en el servidor
+    $tempFile = $imagen['tmp_name']; // Obtenemos la ubicacion temporal del archivo 
     $contenImg = file_get_contents($tempFile); // Obtenemos el contenido del archivo
     $nombreImagen = base64_encode($contenImg); // Codificamos el contenido del archivo en base64 (nos da ese texto gigante)
   }
@@ -24,6 +24,8 @@
   $url = htmlspecialchars($_POST['url']);
   $generos = (isset($_POST['generos'])) ? $_POST['generos'] : '';
 
+
+  // == Validamos los datos ==
   // Validamos el nombre
   if (empty($nombre)) {
     $valido = false;
@@ -81,7 +83,6 @@
     $errores[] = 'Debe seleccionar al un genero';
   } 
 
-  
 
 
 

@@ -1,5 +1,5 @@
 <?php
-//** POST juegos credos por el formulario **/
+  //** POST juegos credos por el formulario **/
   session_start();
   sleep(1); // Para darle tiempo para que se vea la verificacion de js
 
@@ -8,7 +8,6 @@
       // $_SERVER['REQUEST_METHOD'] -> Devuelve el método de solicitud utilizado para acceder a la página actual.
     // Validamos la informacion
     require 'validarPostJuegos.php';
-    
 
     unset($_POST);
       // unset() -> Elimina la información registrada de una variable
@@ -19,22 +18,18 @@
       // insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos);
       $msg = "Juego creado con exito";
     } else {
-      // Si hay errores, imprimir los mensajes de error en la consola del navegador
-      $msgError = 'No se pudo validar el formulario. Errores:\n';
+      // Si hay errores, los alamacenamos en la variable global $_SESSION['msg']
+      $msg = 'No se pudo validar el formulario. Errores:\n';
       foreach ($errores as $error) {
-        $msgError .= " - ". $error . '\n';
+        $msg .= " - ". $error . '\n';
       }
-      $msg = $msgError;
-      $_SESSION['msg'] = $msg;
-      header('Location: ../altaJuego.php');  
-      exit; // para asegurarte de que el código se detenga y la redirección se realice correctamente.
     }
-  } else { // Si accedieron a este archivo sin usar el formulario, los redireccionamos al index
-    $_SESSION['msg'] = "Acceso no autorizado";
+  } else { // Si accedieron a este archivo sin usar el formulario
+    $msg = "Acceso no autorizado";
   }
-  header('Location: ../index.php'); // Para no quedarnos en la pagina php y poder ver los datos que se envian, redireccionamos a index.php
+  $_SESSION['msg'] = $msg;
+  header('Location: ../altaJuego.php'); // Para no quedarnos en la pagina php y poder ver los datos que se envian, redireccionamos a index.php
   exit; // para asegurarte de que el código se detenga y la redirección se realice correctamente.
-
 
   
   function insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos) {

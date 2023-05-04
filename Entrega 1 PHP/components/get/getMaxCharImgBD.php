@@ -3,7 +3,7 @@
   //* de esta forma podemos verificar q el usuario ingrese una imagen en donde al codificarla 
   //* no supere los caracteres permitidos por caterogia text de imagen en la bd.
   //* Esto debido a que un texto mayor q represente la imagen sera cortado hasta el maximo de caracteres
-  //* soportados.
+  //* soportados 💀. 
 
   /*
     almacenamiento máximo en MySQL:
@@ -23,7 +23,9 @@
     $conexion = conectarBD();
 
     // Creamos la consulta
-    $sql = "SELECT MAX(CHAR_LENGTH(imagen)) FROM juegos";
+    $sql = "SELECT MAX(CHAR_LENGTH(imagen)) FROM juegos"; 
+      // MAX() -> Devuelve el valor máximo de una expresión
+      // CHAR_LENGTH() -> Devuelve el número de caracteres en una cadena
     // Ejecutamos la consulta
     $resultado = mysqli_query($conexion, $sql);
 

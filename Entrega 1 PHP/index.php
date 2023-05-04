@@ -1,16 +1,18 @@
 <?php
-  session_start();  // Esta función crea o reanuda una sesión y permite el acceso a las variables de sesión a través de la superglobal
+  //Agregamos opciones a la BD para tener como default porque no quiero agregarlo manualmente :D 
+  require('components/post/postOpciones.php'); //  Este archivo no es necesario obligatorio usar 
+  session_start(); // Esta función crea o reanuda una sesión y permite el acceso a las variables de sesión a través de la superglobal
     // session_start() -> se debe llamar al comienzo de cada página que utilice variables de sesión.
     // Los datos de sesión en PHP se almacenan en el servidor.
   $pathConexion = 'config/';
   require_once('components/get/getOpcionesNombresJuegos.php');
   require_once('components/get/getOpcionesGeneros.php');
-  require_once('components/get/getOpcionesPlataformas.php');
+  require('components/get/getOpcionesPlataformas.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
-<head> <!-- incluir metadatos y enlaces a recursos externos en una página web. -->
+<head> 
   <meta charset="UTF-8" /> <!-- Para que se muestren los caracteres especiales -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Para que se adapte a la pantalla del dispositivo -->
   <link rel="stylesheet" href="assets/css/estilos.css" />
@@ -43,7 +45,10 @@
             <label for="filtro-generos" class="titulo-filtro">Por Genero</label>
             <select name="filtro-generos" id="filtro-generos" title="listado-plataformas">
               <option value="-1">Ninguna selección</option>
-              <?php require_once('components/includes/opciones_genero.php') ?>
+              <?php 
+                $_SESSION['mostrar'] = 'generos';
+                require('components/includes/opciones_mostrar.php');
+              ?>
             </select>
           </div>
           <!-- Filtro por plataforma -->
@@ -51,10 +56,14 @@
             <label for="filtro-plataformas" class="titulo-filtro">Por plataforma</label>
             <select name="filtro-plataformas" id="filtro-plataformas" title="listado-plataformas">
               <option value="-1">Ninguna selección</option>
-              <?php require_once('components/includes/opciones_plataforma.php') ?>
+              <?php
+                $_SESSION['mostrar'] = 'plataformas';
+                require('components/includes/opciones_mostrar.php');
+              ?>
             </select>
           </div>
           <div class="ordenamiento_juego">
+          <!-- Ordenamiento por A-Z -->
           <label for="filtro-ordenamiento" class="titulo-filtro">ordenamiento</label>
           <select name="filtro-ordenamiento" id="filtro-ordenamiento" title="listado-ordenamientos"> 
             <option value="-1">Ninguna selección</option>
@@ -64,7 +73,6 @@
         </div>
           <input type="submit" value="Filtrar"></input>
         </form>
-        <!-- Ordenamiento por A-Z -->
       </aside>
       <!-- Seccion que muestra el contenido -->
       <section class="juegos">
@@ -89,9 +97,7 @@
 <script src="assets/js/mostrarOpciones.js"></script>
 
 <!-- PHP -->
-<!-- Agregamos opciones a la BD para tener como default porque no quiero agregarlo manualmente :D -->
-<? // php require('components/post/postOpciones.php') ?>
+<!-- Mensajes de error -->
 <?php require('components/includes/displayMsg.php') ?>
 
 </html>
-

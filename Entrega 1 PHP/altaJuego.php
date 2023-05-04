@@ -23,7 +23,6 @@
   <main class="main">
     <div class="contenido">
       <form id="formulario-agregar" class="form-agregar" enctype="multipart/form-data" action="components/postFormularioJuego.php" method="post" >
-        <!-- enctype="multipart/form-data -> para que PHP pueda reconocer el archivo cuando usamos imput type="file" -->
         <div>
           <label for="nombre">Nombre del juego:</label>
           <input type="text" id="nombre" name="nombre" placeholder="Age of empire III"/>
@@ -35,23 +34,28 @@
         </div>
         <div>
           <label for="descripcion">Descripcion:</label>
-          <textarea id="descripcion" name="descripcion" maxlength="255" placeholder="Juegazo"></textarea>
+          <textarea id="descripcion" name="descripcion" placeholder="Juegazo"></textarea>
         </div>
         <div>
           <label for="plataforma">Plataforma:</label>
-          <select name="plataformas" id="plataformas" title="listado-plataformas" multiple> 
-            <?php require_once('components/includes/opciones_plataforma.php') ?>
+          <select name="plataformas" id="plataformas" title="listado-plataformas"> 
+            <?php
+              $_SESSION['mostrar'] = 'plataformas';
+              require('components/includes/opciones_mostrar.php');
+            ?>
           </select>
         </div>
         <div>
           <label for="url">URL:</label>
-          <input type="text" id="url" name="url" maxlength="80" placeholder="https://www.ageofempires.com/games/aoeiiide"/>
-          
+          <input type="text" id="url" name="url" placeholder="https://www.ageofempires.com/games/aoeiiide"/> 
         </div>
         <div>
           <label for="genero">Genero:</label>
-          <select name="generos" id="generos" title="listado-generos" multiple>
-            <?php require_once('components/includes/opciones_genero.php') ?>
+          <select name="generos" id="generos" title="listado-generos">
+          <?php
+              $_SESSION['mostrar'] = 'generos';
+              require('components/includes/opciones_mostrar.php');
+            ?>
           </select>
         </div>
         <input type="submit" value="Enviar" onclick="validarFormulario()" ></input>

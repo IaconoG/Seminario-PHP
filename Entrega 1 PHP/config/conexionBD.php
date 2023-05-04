@@ -5,7 +5,6 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    // $dbname = "juegovacio"; 
     $dbname = "entrega1"; 
 
     // Conectamos a la base de datos
