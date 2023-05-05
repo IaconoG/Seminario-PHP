@@ -15,7 +15,7 @@
         // Para evitar que se vuelvan a enviar accidentalmente si el usuario recarga la página o realiza otra acción que envíe nuevamente el formulario.
 
     if ($valido) { // Si la informacion es valida, la insertamos en la base de datos
-      // insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos);
+      insertarJuego($nombre, $nombreImagen, $tipoImagen, $descripcion, $plataformas, $url, $generos);
       $msg = "Juego creado con exito";
     } else {
       // Si hay errores, los alamacenamos en la variable global $_SESSION['msg']
@@ -43,7 +43,7 @@
     if (!$resultado) {
       die('Error al ejecutar la consulta: ' .  mysqli_error($conexion));
     }
-    // mysqli_free_result($resultado); // Libera la memoria asociada al resultado
+    mysqli_free_result($resultado); // Libera la memoria asociada al resultado
     mysqli_close($conexion); // Cierra la conexion a la base de datos
   }
 ?>
