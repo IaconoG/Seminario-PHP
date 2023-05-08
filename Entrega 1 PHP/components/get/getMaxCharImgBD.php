@@ -13,19 +13,20 @@
       LONGTEXT: Puede almacenar hasta 4,294,967,295 caracteres.
       BLOB: Puede almacenar hasta 65,535 bytes de datos. -> TEXT
 
-    http://m.sql.11sql.com/sql-datos-texto-mysql.html
     https://stackoverflow.com/questions/13932750/tinytext-text-mediumtext-and-longtext-maximum-storage-sizes
+    https://www.mssqltips.com/sqlservertutorial/183/information-schema-columns/
   */
 
   function maxCaracterImg () {
     // Conectamos a la base de datos
     require_once '../config/conexionBD.php';
+
     $conexion = conectarBD();
 
     // Creamos la consulta
-    $sql = "SELECT MAX(CHAR_LENGTH(imagen)) FROM juegos"; 
-      // MAX() -> Devuelve el valor máximo de una expresión
-      // CHAR_LENGTH() -> Devuelve el número de caracteres en una cadena
+    $sql = "SELECT CHARACTER_MAXIMUM_LENGTH FROM information_schema.columns WHERE table_name = 'juegos' AND column_name = 'imagen'";
+      // CHARACTER_MAXIMUM_LENGTH -> El maximo de caracteres de la columna
+      // information_schema.columns -> Es una vista que contiene información sobre las columnas de las tablas de la base de datos.
     // Ejecutamos la consulta
     $resultado = mysqli_query($conexion, $sql);
 
@@ -34,9 +35,10 @@
     }
 
     // Obtenemos el resultado
-    $maxChar = mysqli_fetch_array($resultado);
-    // Almacenamos el resultado en una variable
-    $maxChar = $maxChar[0];
+    $columnaImagen = mysqli_fetch_assoc($resultado);
+
+    // Obtenemos el maximo de caracteres de la columna imagen
+    $maxChar = $columnaImagen['CHARACTER_MAXIMUM_LENGTH'];
 
     // Cerramos la conexion
     mysqli_free_result($resultado);
